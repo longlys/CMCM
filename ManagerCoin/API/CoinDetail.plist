@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>Price</string>
+	<string>Price BTC</string>
+	<string>Market Cap</string>
+	<string>Volume 24h</string>
+	<string>Availiable Supply</string>
+	<string>Total Supply</string>
+	<string>% Change 1h</string>
+	<string>% Change 1d</string>
+	<string>% Change 1w</string>
+</array>
+</plist>
