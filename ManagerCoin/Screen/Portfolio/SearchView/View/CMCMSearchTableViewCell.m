@@ -19,7 +19,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    [self setBackgroundColor:sBackgroundColor];
+    [self.titleCell setTextColor:sTitleColor];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

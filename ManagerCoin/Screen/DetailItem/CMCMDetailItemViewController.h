@@ -11,5 +11,5 @@
 
 @interface CMCMDetailItemViewController : UIViewController
 -(instancetype)initWithCodeItem:(CMCMItemModel *)item;
-
+-(instancetype)initWithSearchCodeItem:(CMCMModelSearch *)item;
 @end

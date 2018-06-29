@@ -63,7 +63,7 @@
     self.bannerView = [[GADBannerView alloc]
                        initWithAdSize:kGADAdSizeBanner];
     [self addBannerViewToView:self.bannerView];
-    self.bannerView.adUnitID = @"ca-app-pub-2427874870616509/4322484086";
+    self.bannerView.adUnitID = idBanner;
     self.bannerView.rootViewController = self;
     [self.bannerView loadRequest:[GADRequest request]];
     self.bannerView.delegate = self;
@@ -73,7 +73,7 @@
 }
 - (GADInterstitial *)createAndLoadInterstitial {
     GADInterstitial *interstitial =
-    [[GADInterstitial alloc] initWithAdUnitID:@"ca-app-pub-2427874870616509/1725539709"];
+    [[GADInterstitial alloc] initWithAdUnitID:idinterstitial];
     interstitial.delegate = self;
     [interstitial loadRequest:[GADRequest request]];
     return interstitial;

@@ -18,6 +18,13 @@
 @property (nonatomic)double volume_24h;
 
 - (instancetype)initQuotesFollowUSDWithDictionary:(NSDictionary *)dic;
+- (instancetype)initWidth:(NSString *)market_cap
+                    width:(NSString *)percent_change_1h
+                    width:(NSString *)percent_change_24h
+                    width:(NSString *)percent_change_7d
+                    width:(NSString *)price
+                    width:(NSString *)volume_24h;
+
 
 @end
 

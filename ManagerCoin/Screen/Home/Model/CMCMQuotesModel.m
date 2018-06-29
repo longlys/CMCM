@@ -53,4 +53,23 @@
     return self;
 
 }
+- (instancetype)initWidth:(NSString *)market_cap
+                    width:(NSString *)percent_change_1h
+                    width:(NSString *)percent_change_24h
+                    width:(NSString *)percent_change_7d
+                    width:(NSString *)price
+                    width:(NSString *)volume_24h
+{
+    self = [super init];
+    if (self) {
+        self.market_cap = [market_cap integerValue];
+        self.percent_change_1h = [percent_change_1h doubleValue];
+        self.percent_change_24h = [percent_change_24h doubleValue];
+        self.percent_change_7d = [percent_change_7d doubleValue];
+        self.price = [price doubleValue];
+        self.volume_24h = [volume_24h doubleValue];
+    }
+    return self;
+}
+
 @end

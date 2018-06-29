@@ -19,7 +19,9 @@
 @property(nonatomic) CMCMItemModel *currentItem;
 @property (nonatomic) CMCMChartAPI *apiChart;
 @property (nonatomic) CMCMModelChart *modelChart;
+@property (nonatomic) CMCMModelSearch *currentItemS;
 @property (nonatomic) CMCMAPI *api;
+@property (nonatomic) BOOL isItemS;
 @property(nonatomic) NSArray *arrayChart;
 @property (nonatomic) UIControl *viewChart;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -31,8 +33,9 @@
 
 @end
 #define cItemTableViewCell @"ItemTableViewCell"
-#define sHeightHeaderView 200
-#define sHeightCharView 150
+#define sHeightHeaderView 300
+#define sHeightControl 50
+#define sHeightCharView 200
 
 @implementation CMCMDetailItemViewController
 
@@ -55,6 +58,14 @@
     return self;
 }
 
+-(instancetype)initWithSearchCodeItem:(CMCMModelSearch *)item{
+    self = [super init];
+    if (self) {
+        self.currentItemS = item;
+        self.isItemS = YES;
+    }
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor blackColor]];
@@ -63,7 +74,11 @@
     self.modelChart = [[CMCMModelChart alloc] init];
     [self.view setBackgroundColor:sBackgroundColor];
     [self.tableView setBackgroundColor:[UIColor clearColor]];
-    self.title = self.currentItem.title;
+    if (self.isItemS) {
+        self.title = self.currentItemS.title;
+    } else {
+        self.title = self.currentItem.title;
+    }
     self.navigationController.navigationBar.translucent = NO;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -73,12 +88,13 @@
     self.bannerView = [[GADBannerView alloc]
                        initWithAdSize:kGADAdSizeBanner];
     [self addBannerViewToView:self.bannerView];
-    self.bannerView.adUnitID = @"ca-app-pub-2427874870616509/4322484086";
+    self.bannerView.adUnitID = idBanner;
     self.bannerView.rootViewController = self;
     [self.bannerView loadRequest:[GADRequest request]];
     self.bannerView.delegate = self;
 
 }
+
 - (void)addBannerViewToView:(UIView *)bannerView {
     bannerView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:bannerView];
@@ -110,7 +126,11 @@
 }
 -(void)loadDataWithType{
     weakify(self);
-    [self.api getDetailCoinWithPriceBTC:self.currentItem.rank withCoinCover:@"BTC" complete:^(CMCMItemModel *resul, NSError *error) {
+    NSInteger rank = self.currentItem.rank;
+    if (self.isItemS) {
+        rank = [self.currentItemS.idItem integerValue];
+    }
+    [self.api getDetailCoinWithPriceBTC:rank withCoinCover:@"BTC" complete:^(CMCMItemModel *resul, NSError *error) {
         if (error == nil) {
             self_weak_.currentItem = resul;
             [self_weak_.tableView reloadData];
@@ -118,8 +138,8 @@
     }];
 }
 
--(void)getdatabaseChart{
-    [self.apiChart loadDataChartWithStyle:TypeALL withCodeItem:self.currentItem.title complete:^(CMCMModelChart *resul, NSError *error) {
+-(void)getdatabaseChartWidthType:(ChartType )type{
+    [self.apiChart loadDataChartWithStyle:type withCodeItem:self.currentItem.title complete:^(CMCMModelChart *resul, NSError *error) {
         self.modelChart = resul;
         CMCMChartView *subChartView = [[CMCMChartView alloc] initWithFrame:self.viewChart.bounds];
         {
@@ -252,13 +272,74 @@
     UIView *view = [[UIView alloc] initWithFrame:f];
     CGRect fChar = [UIScreen mainScreen].bounds;
     fChar.size.height = sHeightCharView;
-    fChar.origin.y = (sHeightHeaderView-sHeightCharView)/2;
+    fChar.origin.y = sHeightHeaderView - sHeightCharView - sHeightControl;
     self.viewChart = [[UIView alloc] initWithFrame:fChar];
-    [self getdatabaseChart];
+    [self getdatabaseChartWidthType:TypeMin];
     [self.viewChart setBackgroundColor:sBackgroundColor];
     [view setBackgroundColor:sBackgroundColor];
     [view addSubview:self.viewChart];
+    CGRect fC = [UIScreen mainScreen].bounds;
+    fC.size.height = sHeightControl;
+    fC.origin.y = sHeightCharView+sHeightControl;
+    UIView *viewControl = [[UIView alloc] initWithFrame:fC];
+    [viewControl setBackgroundColor:[UIColor redColor]];
+    CMCMQuotesModel *q = self.currentItem.quotesUSD;
+    NSArray *arr = [[NSArray alloc] initWithObjects:@"H", @"24h",@"1W",@"1M",@"3M",@"6M",@"1Y",@"All", nil];
+    [view addSubview:viewControl];
+    float w = [UIScreen mainScreen].bounds.size.width/8;
+    CGRect fBtn = viewControl.bounds;
+    fBtn.size.width = w;
+    for (int i = 0; i < arr.count; i++) {
+        fBtn.origin.x = w*i;
+        UIButton *btn = [[UIButton alloc] initWithFrame:fBtn];
+        btn.tag = i;
+        [btn addTarget:self action:@selector(btnTouchChangeChart:) forControlEvents:UIControlEventTouchUpInside];
+        [btn setBackgroundColor:[UIColor greenColor]];
+        [btn setTitle:[arr objectAtIndex:i] forState:UIControlStateNormal];
+        [viewControl addSubview:btn];
+    }
+    
+    CGRect flb = [UIScreen mainScreen].bounds;
+    flb.size.height = sHeightControl;
+
+    UILabel *lb = [[UILabel alloc] initWithFrame:flb];
+    [lb setTextColor:sTitleColor];
+    lb.text = [NSString stringWithFormat:@"$ %@",self.currentItem.total_supply];
+    lb.textAlignment = NSTextAlignmentCenter;
+    [view addSubview:lb];
+    
     return view;
+}
+
+-(void)btnTouchChangeChart:(UIButton *)sender{
+    switch (sender.tag) {
+        case 0:
+            [self getdatabaseChartWidthType:TypeHou];
+            break;
+        case 1:
+            [self getdatabaseChartWidthType:Type24h];
+            break;
+        case 2:
+            [self getdatabaseChartWidthType:Type1W];
+            break;
+        case 3:
+            [self getdatabaseChartWidthType:Type1M];
+            break;
+        case 4:
+            [self getdatabaseChartWidthType:Type3M];
+            break;
+        case 5:
+            [self getdatabaseChartWidthType:Type6M];
+            break;
+        case 6:
+            [self getdatabaseChartWidthType:Type1Y];
+            break;
+        case 7:
+            [self getdatabaseChartWidthType:TypeALL];
+            break;
+        default:
+            break;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

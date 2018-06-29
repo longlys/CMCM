@@ -174,15 +174,11 @@ static CMCMAPI *_sharedObject = nil;
 -(NSArray *)getListCoin{
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSData *data = [userDefaults objectForKey:@"listCoinSearch"];
-
     NSError* error;
     if (data == nil) {
         return nil;
     }
-
     NSArray* array = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error][@"data"];
-
-    
     NSMutableArray *resul = [NSMutableArray new];
     for (NSDictionary *dic in array) {
         CMCMModelSearch *model = [[CMCMModelSearch alloc] initWithDictionary:dic];
@@ -190,13 +186,64 @@ static CMCMAPI *_sharedObject = nil;
     }
     return resul;
 }
+- (void)searchCoinFull:(NSString *)key complete:(void (^)(NSArray *resul))completionBlock{
+    NSMutableArray *resulSum = [NSMutableArray new];
+    NSArray *arr = [self searchCoin:key];
+    for (int i = 0; i < arr.count; i++) {
+        CMCMModelSearch *model = [arr objectAtIndex:i];
+        [self searchCoinWith:model.title complete:^(CMCMItemModel *resul, NSError *error) {
+            [resulSum addObject:resul];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock(resulSum);
+            });
+        }];
+        if (i == arr.count -1) {
+        }
+    }
+}
+//https://api.coinmarketcap.com/v1/ticker/bitcoin/
+- (void)searchCoinWith:(NSString *)title complete:(void (^)(CMCMItemModel *resul, NSError *error))completionBlock
+{
+    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:nil delegateQueue:nil];
+    NSString *trimmed = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+
+    NSString *urlString = [NSString stringWithFormat:@"https://api.coinmarketcap.com/v1/ticker/%@",trimmed];
+    NSString *strResult = [urlString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+
+    NSLog(@"KEY = %@",urlString);
+    NSURL *url = [NSURL URLWithString: urlString];
+    NSURLComponents *components = [[NSURLComponents alloc] initWithURL: url resolvingAgainstBaseURL: NO];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: components.URL];
+    request.HTTPMethod = @"GET";
+    NSURLSessionDataTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error == nil) {
+            NSArray *responseBody = [NSJSONSerialization JSONObjectWithData: data options: 0 error: nil];
+            NSDictionary *dic = responseBody.firstObject;
+            CMCMItemModel *model = [[CMCMItemModel alloc] initWithSearchDictionary:dic];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock(model, nil);
+            });
+        } else {
+            // Failure
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock(nil, error);
+            });
+            NSLog(@"URL Session Task Failed: %@", [error localizedDescription]);
+        }
+    }];
+    
+    [task resume];
+}
+
 
 - (NSArray *)searchCoin:(NSString *)key{
+    
     NSMutableArray *resul = [NSMutableArray new];
     for (CMCMModelSearch *model in [self getListCoin]) {
-        if ([model.idSearch containsString:key]) {
+        if ([model.idSearch containsString:[key uppercaseString]]) {
             [resul addObject:model];
-        } else if ([model.symbol containsString:key]) {
+        } else if ([model.symbol containsString:[key uppercaseString]]) {
             [resul addObject:model];
         }
     }

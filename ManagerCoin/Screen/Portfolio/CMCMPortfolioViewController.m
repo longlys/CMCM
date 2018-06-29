@@ -9,7 +9,7 @@
 #import "CMCMPortfolioViewController.h"
 #import "CMCMPortfolioTableViewCell.h"
 #import "CMCMCreateItemViewController.h"
-#import "DatabaseManager.h"
+#import "CMCMDatabaseManager.h"
 #import "CMCMAPI.h"
 #import "CMCMModelProtfolio.h"
 @import GoogleMobileAds;
@@ -20,7 +20,6 @@
 @property (nonatomic) NSMutableArray *arrayDataTableView;
 @property (nonatomic) UIBarButtonItem *btnAdd;
 @property (nonatomic) UIBarButtonItem *btnEdit;
-@property (nonatomic) DatabaseManager *dbManager;
 @property (nonatomic) CMCMAPI *api;
 @property(nonatomic, strong) GADBannerView *bannerView;
 
@@ -33,12 +32,12 @@
     self.api = [[CMCMAPI alloc] init];
 
     self.title = @"My Manager Coin";
-//    self.dbManager = [[DatabaseManager alloc] init];
+    self.arrayDataTableView = [NSMutableArray new];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.view setBackgroundColor:sBackgroundColor];
     [self.tableView setBackgroundColor:[UIColor clearColor]];
-
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView setBackgroundColor:[UIColor clearColor]];
     self.btnAdd = [[UIBarButtonItem alloc] initWithTitle:@"Add" style:UIBarButtonItemStylePlain target:self action:@selector(fmn_AddItem:)];
     self.navigationItem.rightBarButtonItem = self.btnAdd;
@@ -54,7 +53,7 @@
     self.bannerView = [[GADBannerView alloc]
                        initWithAdSize:kGADAdSizeBanner];
     [self addBannerViewToView:self.bannerView];
-    self.bannerView.adUnitID = @"ca-app-pub-2427874870616509/4322484086";
+    self.bannerView.adUnitID = idBanner;
     self.bannerView.rootViewController = self;
     [self.bannerView loadRequest:[GADRequest request]];
     self.bannerView.delegate = self;
@@ -89,21 +88,22 @@
 }
 
 -(void)reloadDatabase{
-    self.arrayDataTableView = [NSMutableArray new];
-    self.arrayDataTableView = [[DatabaseManager shareInstance]listTracksWithType];
     weakify(self);
-//    __block int i = 0;
-    for (CMCMModelProtfolio *model in self.arrayDataTableView) {
-        [self.api getCoinWithPriceUSD:model.idItemPro complete:^(CMCMItemModel *resul, NSError *error) {
-//            i++;
-            if (error == nil) {
-                model.priceNow = resul.quotesUSD.price;
-//                if (i == self_weak_.arrayDataTableView.count) {
-                    [self_weak_.tableView reloadData];
-//                }
-            }
-        }];
-    }
+    [self_weak_.arrayDataTableView removeAllObjects];
+    [cmcmDBMgr allTracks:^(NSArray *arrayItems) {
+        [self_weak_.arrayDataTableView addObjectsFromArray:arrayItems];
+        for (int i = 0; i < self_weak_.arrayDataTableView.count; i++) {
+            CMCMModelProtfolio *model = [self_weak_.arrayDataTableView objectAtIndex:i];
+            [self_weak_.api getCoinWithPriceUSD:model.idItemPro complete:^(CMCMItemModel *resul, NSError *error) {
+                if (error == nil) {
+                    model.priceNow = resul.quotesUSD.price;
+                    if (i == self_weak_.arrayDataTableView.count-1) {
+                        [self_weak_.tableView reloadData];
+                    }
+                }
+            }];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -117,48 +117,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 70;
 }
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-//    return 0.001f;
-//}
-
-//- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//    CGRect f = [UIScreen mainScreen].bounds;
-//    f.size.height = 60;
-//    UIView *view = [[UIView alloc] initWithFrame:f];
-//    [view setBackgroundColor:[UIColor colorWithRed:225.f/255.f green:225.f/255.f blue:225.f/255.f alpha:1.0f]];
-//    [view setBackgroundColor:sBackgroundColor];
-//
-//    float w = view.frame.size.width / 4;
-//
-//    CGRect f1 = CGRectMake(0, 0, w*2, 60);
-//
-//    UILabel *lbName = [[UILabel alloc] initWithFrame:f1];
-//    lbName.font = [UIFont boldSystemFontOfSize:15.f];
-//    lbName.textColor = sTitleColor;
-//    lbName.text = @"Coin Name (Code)";
-//    [view addSubview:lbName];
-//
-//    CGRect f2 = CGRectMake(0, 0, w, 60);
-//    f2.origin.x = f1.size.width + f1.origin.x;
-//    UILabel *lbPrice = [[UILabel alloc] initWithFrame:f2];
-//    lbPrice.font = [UIFont boldSystemFontOfSize:15.f];
-//    lbPrice.textColor = sTitleColor;
-//    lbPrice.text = @"Total (USD)";
-//    lbPrice.textAlignment = NSTextAlignmentCenter;
-//    [view addSubview:lbPrice];
-//
-//    CGRect f3 = CGRectMake(0, 0, w, 60);
-//    f3.origin.x = f2.size.width + f2.origin.x;
-//    UILabel *lbPercent24h = [[UILabel alloc] initWithFrame:f3];
-//    lbPercent24h.font = [UIFont boldSystemFontOfSize:15.f];
-//    lbPercent24h.textColor = sTitleColor;
-//    lbPercent24h.text = @"24h";
-//    lbPercent24h.textAlignment = NSTextAlignmentCenter;
-//    [view addSubview:lbPercent24h];
-//
-//    return view;
-//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -176,11 +134,15 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-        CMCMModelProtfolio *model = [self.arrayDataTableView objectAtIndex:indexPath.row];
+    CMCMModelProtfolio *model = [self.arrayDataTableView objectAtIndex:indexPath.row];
+    model.idItemPro = indexPath.row;
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [[DatabaseManager shareInstance] deleteTrack:self.arrayDataTableView[indexPath.row]];
-        [self.arrayDataTableView removeObjectAtIndex:indexPath.row];
-        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        weakify(self);
+        [cmcmDBMgr deleteTracks:@[model] completion:^(NSError *error) {
+            [self_weak_.arrayDataTableView removeObject:model];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }];
+
     }
 }
 

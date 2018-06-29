@@ -29,6 +29,6 @@ typedef enum : NSUInteger {
 @property (nonatomic)NSString *website_slug;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dic;
-
+- (instancetype)initWithSearchDictionary:(NSDictionary *)dic;
 @end
 

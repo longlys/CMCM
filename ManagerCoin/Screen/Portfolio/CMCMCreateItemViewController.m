@@ -8,15 +8,14 @@
 
 #import "CMCMCreateItemViewController.h"
 #import "CMCMModelProtfolio.h"
-#import "CMCMAPI.h"
 #import "CMCMModelSearch.h"
 #import "CMCMSearchTableViewController.h"
 #import "CMCMModelSearch.h"
-#import "DatabaseManager.h"
+#import "CMCMDatabaseManager.h"
 
 @interface CMCMCreateItemViewController ()<UITextFieldDelegate, CMCMSearchTableViewControllerDelegate>
 @property (nonatomic) NSMutableArray *arrayDataTableView;
-@property (nonatomic) DatabaseManager *dbManager;
+@property (nonatomic) CMCMDatabaseManager *dbManager;
 @property (weak, nonatomic) IBOutlet UILabel *lbTitle1;
 @property (weak, nonatomic) IBOutlet UILabel *lbTitle2;
 @property (weak, nonatomic) IBOutlet UILabel *lbTitle3;
@@ -32,7 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnAdd;
 @property (nonatomic) UIButton *btnDonePicker;
 @property (nonatomic) UIButton *btnDoneTextField;
-@property (nonatomic) BOOL isBuy;
+@property (nonatomic) NSInteger isBuy;
 @property (nonatomic) NSInteger quality;
 @property (nonatomic) NSInteger price;
 @property (nonatomic)UIDatePicker* picker;
@@ -46,6 +45,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *textFieldSearch;
 @property (weak, nonatomic) IBOutlet UILabel *lbTitle0;
 @property (nonatomic) CMCMModelSearch *sItem;
+@property (weak, nonatomic) IBOutlet UILabel *lbError;
 
 @end
 #define cItemTableViewCell @"ItemTableViewCell"
@@ -104,19 +104,19 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)touchChangeTypePrice:(id)sender {
-    if (self.numType == 1) {
-        [self.btnChangeTypePrice setTitle:@"BTC" forState:UIControlStateNormal];
-        self.lbTitle3.text = @"Price BTC";
-        self.numType = 2;
-    }else if (self.numType == 2) {
-        [self.btnChangeTypePrice setTitle:@"ETH" forState:UIControlStateNormal];
-        self.lbTitle3.text = @"Price ETH";
-        self.numType = 3;
-    }else {
-        [self.btnChangeTypePrice setTitle:@"USD" forState:UIControlStateNormal];
-        self.lbTitle3.text = @"Price USD";
-        self.numType = 1;
-    }
+//    if (self.numType == 1) {
+//        [self.btnChangeTypePrice setTitle:@"BTC" forState:UIControlStateNormal];
+//        self.lbTitle3.text = @"Price BTC";
+//        self.numType = 2;
+//    }else if (self.numType == 2) {
+//        [self.btnChangeTypePrice setTitle:@"ETH" forState:UIControlStateNormal];
+//        self.lbTitle3.text = @"Price ETH";
+//        self.numType = 3;
+//    }else {
+//        [self.btnChangeTypePrice setTitle:@"USD" forState:UIControlStateNormal];
+//        self.lbTitle3.text = @"Price USD";
+//        self.numType = 1;
+//    }
 }
 
 -(void)reloadDatabase{
@@ -132,7 +132,8 @@
 }
 
 -(void)setupDisplay{
-    
+    [self.lbError setHidden:YES];
+    self.isBuy = -1;
     UIImage *image = [[UIImage imageNamed:@"qs_close"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [self.btnClose setImage:image forState:UIControlStateNormal];
     self.btnClose.tintColor = sTinColor;
@@ -193,9 +194,21 @@
     } else {
         [self.btnDoneTextField setHidden:NO];
     }
+    self.lbTotal.layer.borderColor = sTitleColor.CGColor;
+    self.lbTotal.layer.borderWidth = 1.0;
+    self.lbTotal.layer.cornerRadius = 10;
+
+    self.btnDate.layer.borderColor = sTitleColor.CGColor;
+    self.btnDate.layer.borderWidth = 1.0;
+    self.btnDate.layer.cornerRadius = 10;
+
 }
 
+
 -(void)touchbtnDoneTextField:(id)sender{
+    if (self.btnDoneTextField.hidden) {
+        return;
+    }
     [self.btnDoneTextField setHidden:YES];
     [self.view endEditing:YES];
     [self setupValueTotal];
@@ -217,18 +230,23 @@
     return (newLength > 9) ? NO : YES;
 }
 - (IBAction)touchSell:(id)sender {
-    self.isBuy = NO;
+    self.isBuy = 0;
     [self.btnSell setBackgroundImage:[UIImage imageNamed:@"circle-filled"] forState:UIControlStateNormal];
     [self.btnBuy setBackgroundImage:[UIImage imageNamed:@"circle-outline"] forState:UIControlStateNormal];
 }
 - (IBAction)touchBuy:(id)sender {
-    self.isBuy = YES;
+    self.isBuy = 1;
     [self.btnBuy setBackgroundImage:[UIImage imageNamed:@"circle-filled"] forState:UIControlStateNormal];
     [self.btnSell setBackgroundImage:[UIImage imageNamed:@"circle-outline"] forState:UIControlStateNormal];
 }
 
 - (IBAction)touchAdd:(id)sender {
-    [self saveItem];
+    if (![self.textField.text isEqualToString:@"0"] && ![self.textField2.text isEqualToString:@"0"] && (self.isBuy > -1) && ![self.textFieldSearch.text isEqualToString:@"--Select Coin--"])
+    {
+        [self saveItem];
+    } else {
+        [self.lbError setHidden:NO];
+    }
 }
 
 - (IBAction)touchDate:(id)sender {
@@ -272,8 +290,14 @@
 }
 
 -(void)setupValueTotal{
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setPositiveFormat:@"##,##,###"];
+
     NSInteger total = self.quality*self.price;
-    self.lbTotal.text = [NSString stringWithFormat:@"%ld",(long)total];
+    NSString *formattedNumberString = [numberFormatter
+                                       stringFromNumber:[NSNumber numberWithFloat:total]];
+
+    self.lbTotal.text = [NSString stringWithFormat:@"$ %@", formattedNumberString];
 }
 -(BOOL)textFieldShouldBeginEditing:(UITextField*)textField {
     [self.btnDoneTextField setHidden:NO];
@@ -339,7 +363,8 @@
 
 -(void)saveItem{
     CMCMModelProtfolio *model = [[CMCMModelProtfolio alloc] init];
-    model.title = self.textFieldSearch.text;
+    NSString *str = self.textFieldSearch.text;
+    model.title = str;
     model.quanlity = self.quality;
     model.price = self.price;
     model.tradedate = self.btnDate.titleLabel.text;
@@ -347,16 +372,19 @@
     model.priceType = self.numType;
     model.symbol = self.sItem.symbol;
     model.artwork = self.sItem.image;
-    model.idCoin = [self.sItem.idItem integerValue];
-    NSLog(@"------====-----%ld",(long)model.idCoin);
-    if ([[DatabaseManager shareInstance] checkID:model]) {
-        NSLog(@"da co");
-    } else {
-        [[DatabaseManager shareInstance] insertTrackModel:model];
-    }
-
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"AddItemNew" object:nil];
+    
+    NSDate *date = [NSDate date];
+    NSTimeInterval ti = [date timeIntervalSince1970];
+    NSString *tmpID = [NSString stringWithFormat:@"%@%f",self.sItem.idItem,ti];
+    model.idCoin = tmpID;
+    weakify(self);
+    [cmcmDBMgr insertTrackItem:model withComplete:^(CMCMModelProtfolio *trackModel, NSError *error) {
+        if (error) {
+            NSLog(@"%@",error);
+        }
+        [self_weak_ dismissViewControllerAnimated:YES completion:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"AddItemNew" object:nil];
+    }];
 }
 
 

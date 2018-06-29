@@ -15,12 +15,17 @@
 //} PriceType;
 @interface CMCMModelProtfolio : NSObject
 
-@property (nonatomic, strong) NSString *title, *symbol, *tradedate, *artwork;
+@property (nonatomic) NSString *title;
+@property (nonatomic) NSString *symbol;
+@property (nonatomic) NSString *tradedate;
+@property (nonatomic) NSString *artwork;
 @property NSInteger quanlity;
 @property NSInteger price;
 @property NSInteger total;
 @property NSInteger priceType;
 @property NSInteger idItemPro;
 @property NSInteger priceNow;
-@property NSInteger idCoin;
+
+@property (nonatomic) NSString  *idCoin;
+
 @end

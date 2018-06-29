@@ -38,6 +38,7 @@
     self.api = [[CMCMAPI alloc] init];
     self.arrayDataTableView = [NSArray new];
     [self searchWithKey];
+    [self.view setBackgroundColor:sBackgroundColor];
 }
 
 -(void)searchWithKey{

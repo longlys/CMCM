@@ -22,25 +22,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    CGRect f = self.view.frame;
-    f.size.height = f.size.height - self.navigationController.navigationBar.frame.size.height;
-    f.origin.y = self.navigationController.navigationBar.frame.size.height;
+//    CGRect f = self.view.frame;
+//    f.size.height = f.size.height - self.navigationController.navigationBar.frame.size.height;
+//    f.origin.y = self.navigationController.navigationBar.frame.size.height;
     self.navigationItem.titleView = self.segmentedControl;
 
     [self.view setBackgroundColor:sBackgroundColor];
-    [self.navigationController.navigationBar setBackgroundColor:sBackgroundColor];
-    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackOpaque];
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-    self.navigationItem.backBarButtonItem = backButton;
+//    [self.navigationController.navigationBar setBackgroundColor:sBackgroundColor];
+//    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+//    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackOpaque];
+//    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+//    self.navigationItem.backBarButtonItem = backButton;
     
-    self.homeVC = [[[CMCMHomeViewController alloc] init]initWithFrame:f];
+    self.homeVC = [[CMCMHomeViewController alloc] init];
     [self addChildViewController:self.homeVC];
-    self.homeVC.view.frame = f;
+    self.homeVC.view.frame = self.view.frame;
     [self.view addSubview:self.homeVC.view];
 
     self.favoritesVC = [[CMCMFavoritesViewController alloc] init];
-    self.favoritesVC.view.frame = f;
+    self.favoritesVC.view.frame = self.view.frame;
     [self.view addSubview:self.favoritesVC.view];
     [self addChildViewController:self.favoritesVC];
     [self.favoritesVC.view setHidden:YES];

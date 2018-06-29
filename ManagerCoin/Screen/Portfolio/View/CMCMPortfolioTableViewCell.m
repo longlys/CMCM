@@ -28,9 +28,9 @@
     self.lbvauleChange.layer.borderWidth = 1.0;
     self.lbvauleChange.layer.cornerRadius = 8;
     [self setBackgroundColor:sBackgroundColor];
-    self.lbTotalNew.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.lbTotalNew.layer.borderWidth = 1.0;
-    self.lbTotalNew.layer.cornerRadius = 8;
+//    self.lbTotalNew.layer.borderColor = [UIColor whiteColor].CGColor;
+//    self.lbTotalNew.layer.borderWidth = 1.0;
+//    self.lbTotalNew.layer.cornerRadius = 8;
 
 }
 
@@ -46,6 +46,10 @@
 }
 
 -(void)setDisplayForCell:(CMCMModelProtfolio *)item {
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setPositiveFormat:@"##,##,###"];
+
+    
     self.lbTitle.text = [NSString stringWithFormat:@"%@(%@)", item.title, item.symbol];
     self.lbValue.text = [NSString stringWithFormat:@"Quanlity: %ld", (long)item.quanlity];
     [self.artwork setImageWithURL:[NSURL URLWithString:item.artwork] placeholderImage:[UIImage imageNamed:@"image"]];
@@ -65,9 +69,13 @@
         [self.lbvauleChange setTextColor:[UIColor redColor]];
         self.lbvauleChange.layer.borderColor = [UIColor redColor].CGColor;
     }
+    NSString *formattedNumberString = [numberFormatter
+                                       stringFromNumber:[NSNumber numberWithFloat:item.priceNow*item.quanlity]];
+    NSString *formattedNumberStringlbPirceBuy = [numberFormatter
+                                                 stringFromNumber:[NSNumber numberWithFloat:item.price]];
 
-    self.lbPirceBuy.text = [NSString stringWithFormat:@"Price: $%ld", (long)item.price];
-    self.lbTotalNew.text = [NSString stringWithFormat:@"Σ: $%ld", (long)item.priceNow*item.quanlity];
+    self.lbPirceBuy.text = [NSString stringWithFormat:@"Price: $%@", formattedNumberStringlbPirceBuy];
+    self.lbTotalNew.text = [NSString stringWithFormat:@"Σ: $%@", formattedNumberString];
 }
 
 @end

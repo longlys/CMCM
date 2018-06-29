@@ -10,13 +10,15 @@
 
 @implementation CMCMModelProtfolio
 
--(id)initWithItem:(NSString *)title andsymbol:(NSString *)symbol
+-(id)initWithItem:(NSString *)title
+        andsymbol:(NSString *)symbol
      andtradedate:(NSString *)tradedate
       andQuanlity:(NSInteger )quanlity
          andprice:(NSInteger )price
          andtotal:(NSInteger )total
      andpriceType:(NSInteger )priceType
      andidItemPro:(NSInteger )idItemPro
+     andidCoin:(NSString *)idCoin
 {
     self = [super init];
     if(self)
@@ -29,6 +31,7 @@
         _total = total;
         _priceType = priceType;
         _idItemPro = idItemPro;
+        _idCoin = idCoin;
     }
     return self;
 }

@@ -16,5 +16,7 @@
 - (void)getCoinWithPriceUSD:(NSInteger )idItem  complete:(void (^)(CMCMItemModel *resul, NSError *error))completionBlock;
 - (NSArray *)getListCoin;
 - (NSArray *)searchCoin:(NSString *)key;
+- (void)searchCoinFull:(NSString *)key complete:(void (^)(NSArray *resul))completionBlock;
 - (void)getallListcoinSearchAndSave;
+- (void)searchCoinWith:(NSString *)title complete:(void (^)(CMCMItemModel *resul, NSError *error))completionBlock;
 @end

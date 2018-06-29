@@ -42,6 +42,8 @@
 		7D5EEDE020A835B1006E7DBD /* CMCMModelProtfolio.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5EEDDF20A835B1006E7DBD /* CMCMModelProtfolio.m */; };
 		7D5EEDE320A83B51006E7DBD /* circle-filled.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D5EEDE120A83B51006E7DBD /* circle-filled.png */; };
 		7D5EEDE420A83B51006E7DBD /* circle-outline.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D5EEDE220A83B51006E7DBD /* circle-outline.png */; };
+		7D64465120E503F600835354 /* CMCMDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D64465020E503F600835354 /* CMCMDatabaseManager.m */; };
+		7D64465420E5092100835354 /* CMCMDatabaseManager+CMCMItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D64465320E5092100835354 /* CMCMDatabaseManager+CMCMItem.m */; };
 		7D68B2AD20ABD92B00E240A5 /* CMCMDetailItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D68B2AB20ABD92B00E240A5 /* CMCMDetailItemViewController.m */; };
 		7D68B2AE20ABD92B00E240A5 /* CMCMDetailItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D68B2AC20ABD92B00E240A5 /* CMCMDetailItemViewController.xib */; };
 		7D68B2B220ABD99100E240A5 /* CMCMChartAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D68B2B120ABD99100E240A5 /* CMCMChartAPI.m */; };
@@ -79,14 +81,27 @@
 		7DA230E5209C16BF008897EE /* CMCMHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DA230E3209C16BF008897EE /* CMCMHomeViewController.m */; };
 		7DA230E6209C16BF008897EE /* CMCMHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DA230E4209C16BF008897EE /* CMCMHomeViewController.xib */; };
 		7DB9472320D0459E00857B5E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D9637D820C2BC96004626B8 /* libsqlite3.tbd */; };
-		7DB9472620D045C700857B5E /* DatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9472520D045C700857B5E /* DatabaseManager.m */; };
 		7DBC376D20B8100A00D74691 /* AddCoin.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7DBC376C20B8100A00D74691 /* AddCoin.plist */; };
+		7DD7D59120E402B900B5A5C1 /* CMCMSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD7D58F20E402B900B5A5C1 /* CMCMSearchViewController.m */; };
+		7DD7D59220E402B900B5A5C1 /* CMCMSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DD7D59020E402B900B5A5C1 /* CMCMSearchViewController.xib */; };
+		7DD7D59920E4042A00B5A5C1 /* icon_tab_search@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DD7D59320E4042900B5A5C1 /* icon_tab_search@3x.png */; };
+		7DD7D59A20E4042A00B5A5C1 /* ic_left_search@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DD7D59420E4042A00B5A5C1 /* ic_left_search@3x.png */; };
+		7DD7D59B20E4042A00B5A5C1 /* ic_left_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DD7D59520E4042A00B5A5C1 /* ic_left_search.png */; };
+		7DD7D59C20E4042A00B5A5C1 /* ic_left_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DD7D59620E4042A00B5A5C1 /* ic_left_search@2x.png */; };
+		7DD7D59D20E4042A00B5A5C1 /* icon_tab_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DD7D59720E4042A00B5A5C1 /* icon_tab_search.png */; };
+		7DD7D59E20E4042A00B5A5C1 /* icon_tab_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DD7D59820E4042A00B5A5C1 /* icon_tab_search@2x.png */; };
 		7DDE800C20A3135E00673B0F /* CMCMPortfolioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE800A20A3135E00673B0F /* CMCMPortfolioViewController.m */; };
 		7DDE800D20A3135E00673B0F /* CMCMPortfolioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DDE800B20A3135E00673B0F /* CMCMPortfolioViewController.xib */; };
 		7DDE804F20A3196E00673B0F /* CMCMFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE804D20A3196E00673B0F /* CMCMFavoritesViewController.m */; };
 		7DDE805020A3196E00673B0F /* CMCMFavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DDE804E20A3196E00673B0F /* CMCMFavoritesViewController.xib */; };
 		7DDE805520A3310000673B0F /* CMCMPortfolioTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE805320A3310000673B0F /* CMCMPortfolioTableViewCell.m */; };
 		7DDE805620A3310000673B0F /* CMCMPortfolioTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DDE805420A3310000673B0F /* CMCMPortfolioTableViewCell.xib */; };
+		7DF3B21C20E5118100C0B3E6 /* CMCMApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF3B21B20E5118100C0B3E6 /* CMCMApplication.m */; };
+		7DF3B21D20E5184C00C0B3E6 /* ManagerCoin.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 7D64464D20E5017A00835354 /* ManagerCoin.sqlite */; };
+		7DF3B22020E52A4800C0B3E6 /* CMCMSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF3B21F20E52A4800C0B3E6 /* CMCMSearchBar.m */; };
+		7DF3B22320E5345F00C0B3E6 /* CMCMNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF3B22220E5345F00C0B3E6 /* CMCMNavigationViewController.m */; };
+		7DF3B22720E5354900C0B3E6 /* UIImage+MSTImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF3B22620E5354900C0B3E6 /* UIImage+MSTImage.m */; };
+		7DF3B22A20E5380A00C0B3E6 /* CMCMWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF3B22920E5380A00C0B3E6 /* CMCMWindow.m */; };
 		D913EB7254FF6B006BA085B1 /* libPods-ManagerCoin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 570CE10CD31D5965620EEE31 /* libPods-ManagerCoin.a */; };
 /* End PBXBuildFile section */
 
@@ -150,6 +165,12 @@
 		7D5EEDDF20A835B1006E7DBD /* CMCMModelProtfolio.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMCMModelProtfolio.m; sourceTree = "<group>"; };
 		7D5EEDE120A83B51006E7DBD /* circle-filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle-filled.png"; sourceTree = "<group>"; };
 		7D5EEDE220A83B51006E7DBD /* circle-outline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle-outline.png"; sourceTree = "<group>"; };
+		7D64464C20E500F000835354 /* CMCMDatabaseManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMCMDatabaseManagerDelegate.h; sourceTree = "<group>"; };
+		7D64464D20E5017A00835354 /* ManagerCoin.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = ManagerCoin.sqlite; sourceTree = "<group>"; };
+		7D64464F20E503F600835354 /* CMCMDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMCMDatabaseManager.h; sourceTree = "<group>"; };
+		7D64465020E503F600835354 /* CMCMDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMCMDatabaseManager.m; sourceTree = "<group>"; };
+		7D64465220E5092100835354 /* CMCMDatabaseManager+CMCMItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CMCMDatabaseManager+CMCMItem.h"; sourceTree = "<group>"; };
+		7D64465320E5092100835354 /* CMCMDatabaseManager+CMCMItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CMCMDatabaseManager+CMCMItem.m"; sourceTree = "<group>"; };
 		7D68B2AA20ABD92B00E240A5 /* CMCMDetailItemViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMCMDetailItemViewController.h; sourceTree = "<group>"; };
 		7D68B2AB20ABD92B00E240A5 /* CMCMDetailItemViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMCMDetailItemViewController.m; sourceTree = "<group>"; };
 		7D68B2AC20ABD92B00E240A5 /* CMCMDetailItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CMCMDetailItemViewController.xib; sourceTree = "<group>"; };
@@ -207,10 +228,17 @@
 		7DA230E3209C16BF008897EE /* CMCMHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMCMHomeViewController.m; sourceTree = "<group>"; };
 		7DA230E4209C16BF008897EE /* CMCMHomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CMCMHomeViewController.xib; sourceTree = "<group>"; };
 		7DB9470B20D02BF400857B5E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		7DB9472420D045C700857B5E /* DatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseManager.h; sourceTree = "<group>"; };
-		7DB9472520D045C700857B5E /* DatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseManager.m; sourceTree = "<group>"; };
 		7DBC376C20B8100A00D74691 /* AddCoin.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AddCoin.plist; sourceTree = "<group>"; };
 		7DD6116920A6E8AE0021373D /* PrefixHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
+		7DD7D58E20E402B900B5A5C1 /* CMCMSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMCMSearchViewController.h; sourceTree = "<group>"; };
+		7DD7D58F20E402B900B5A5C1 /* CMCMSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMCMSearchViewController.m; sourceTree = "<group>"; };
+		7DD7D59020E402B900B5A5C1 /* CMCMSearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CMCMSearchViewController.xib; sourceTree = "<group>"; };
+		7DD7D59320E4042900B5A5C1 /* icon_tab_search@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_tab_search@3x.png"; sourceTree = "<group>"; };
+		7DD7D59420E4042A00B5A5C1 /* ic_left_search@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_left_search@3x.png"; sourceTree = "<group>"; };
+		7DD7D59520E4042A00B5A5C1 /* ic_left_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_left_search.png; sourceTree = "<group>"; };
+		7DD7D59620E4042A00B5A5C1 /* ic_left_search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_left_search@2x.png"; sourceTree = "<group>"; };
+		7DD7D59720E4042A00B5A5C1 /* icon_tab_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_tab_search.png; sourceTree = "<group>"; };
+		7DD7D59820E4042A00B5A5C1 /* icon_tab_search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_tab_search@2x.png"; sourceTree = "<group>"; };
 		7DDE800920A3135E00673B0F /* CMCMPortfolioViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMCMPortfolioViewController.h; sourceTree = "<group>"; };
 		7DDE800A20A3135E00673B0F /* CMCMPortfolioViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMCMPortfolioViewController.m; sourceTree = "<group>"; };
 		7DDE800B20A3135E00673B0F /* CMCMPortfolioViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CMCMPortfolioViewController.xib; sourceTree = "<group>"; };
@@ -220,6 +248,16 @@
 		7DDE805220A3310000673B0F /* CMCMPortfolioTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMCMPortfolioTableViewCell.h; sourceTree = "<group>"; };
 		7DDE805320A3310000673B0F /* CMCMPortfolioTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMCMPortfolioTableViewCell.m; sourceTree = "<group>"; };
 		7DDE805420A3310000673B0F /* CMCMPortfolioTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CMCMPortfolioTableViewCell.xib; sourceTree = "<group>"; };
+		7DF3B21A20E5118100C0B3E6 /* CMCMApplication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMCMApplication.h; sourceTree = "<group>"; };
+		7DF3B21B20E5118100C0B3E6 /* CMCMApplication.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMCMApplication.m; sourceTree = "<group>"; };
+		7DF3B21E20E52A4800C0B3E6 /* CMCMSearchBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMCMSearchBar.h; sourceTree = "<group>"; };
+		7DF3B21F20E52A4800C0B3E6 /* CMCMSearchBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMCMSearchBar.m; sourceTree = "<group>"; };
+		7DF3B22120E5345F00C0B3E6 /* CMCMNavigationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMCMNavigationViewController.h; sourceTree = "<group>"; };
+		7DF3B22220E5345F00C0B3E6 /* CMCMNavigationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMCMNavigationViewController.m; sourceTree = "<group>"; };
+		7DF3B22520E5354900C0B3E6 /* UIImage+MSTImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+MSTImage.h"; sourceTree = "<group>"; };
+		7DF3B22620E5354900C0B3E6 /* UIImage+MSTImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MSTImage.m"; sourceTree = "<group>"; };
+		7DF3B22820E5380A00C0B3E6 /* CMCMWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMCMWindow.h; sourceTree = "<group>"; };
+		7DF3B22920E5380A00C0B3E6 /* CMCMWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMCMWindow.m; sourceTree = "<group>"; };
 		9FEDCFAEE3954097857C4402 /* Pods-ManagerCoin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManagerCoin.release.xcconfig"; path = "Pods/Target Support Files/Pods-ManagerCoin/Pods-ManagerCoin.release.xcconfig"; sourceTree = "<group>"; };
 		A0BA0F2553CEEE0261810287 /* Pods-ManagerCoin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManagerCoin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ManagerCoin/Pods-ManagerCoin.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -402,6 +440,8 @@
 				7DA230D5209C12DC008897EE /* Screen */,
 				7DA230A3209C127A008897EE /* AppDelegate.h */,
 				7DA230A4209C127A008897EE /* AppDelegate.m */,
+				7DF3B21A20E5118100C0B3E6 /* CMCMApplication.h */,
+				7DF3B21B20E5118100C0B3E6 /* CMCMApplication.m */,
 				7DA230AC209C127A008897EE /* Assets.xcassets */,
 				7DA230B1209C127A008897EE /* Info.plist */,
 				7DA230B2209C127A008897EE /* main.m */,
@@ -431,6 +471,7 @@
 		7DA230D5209C12DC008897EE /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				7DD7D58D20E402A300B5A5C1 /* Search */,
 				7D68B2A920ABD91600E240A5 /* DetailItem */,
 				7DDE800720A3134400673B0F /* Favorites */,
 				7DDE800820A3134400673B0F /* Portfolio */,
@@ -472,8 +513,12 @@
 		7DB9471620D038EF00857B5E /* DataBase */ = {
 			isa = PBXGroup;
 			children = (
-				7DB9472420D045C700857B5E /* DatabaseManager.h */,
-				7DB9472520D045C700857B5E /* DatabaseManager.m */,
+				7D64464D20E5017A00835354 /* ManagerCoin.sqlite */,
+				7D64464F20E503F600835354 /* CMCMDatabaseManager.h */,
+				7D64465020E503F600835354 /* CMCMDatabaseManager.m */,
+				7D64464C20E500F000835354 /* CMCMDatabaseManagerDelegate.h */,
+				7D64465220E5092100835354 /* CMCMDatabaseManager+CMCMItem.h */,
+				7D64465320E5092100835354 /* CMCMDatabaseManager+CMCMItem.m */,
 			);
 			path = DataBase;
 			sourceTree = "<group>";
@@ -481,12 +526,27 @@
 		7DD6115620A6CCA20021373D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				7DF3B22420E5353600C0B3E6 /* lib */,
 				7DB9471620D038EF00857B5E /* DataBase */,
 				7D68B2B720AC2FE600E240A5 /* NSDate+Utilities.h */,
 				7D68B2B820AC2FE600E240A5 /* NSDate+Utilities.m */,
 				7D68B2AF20ABD94600E240A5 /* Chart */,
+				7DF3B22120E5345F00C0B3E6 /* CMCMNavigationViewController.h */,
+				7DF3B22220E5345F00C0B3E6 /* CMCMNavigationViewController.m */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		7DD7D58D20E402A300B5A5C1 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				7DD7D58E20E402B900B5A5C1 /* CMCMSearchViewController.h */,
+				7DD7D58F20E402B900B5A5C1 /* CMCMSearchViewController.m */,
+				7DD7D59020E402B900B5A5C1 /* CMCMSearchViewController.xib */,
+				7DF3B21E20E52A4800C0B3E6 /* CMCMSearchBar.h */,
+				7DF3B21F20E52A4800C0B3E6 /* CMCMSearchBar.m */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		7DDE800720A3134400673B0F /* Favorites */ = {
@@ -547,6 +607,12 @@
 		7DDE800F20A3163600673B0F /* tabbarIcon */ = {
 			isa = PBXGroup;
 			children = (
+				7DD7D59520E4042A00B5A5C1 /* ic_left_search.png */,
+				7DD7D59620E4042A00B5A5C1 /* ic_left_search@2x.png */,
+				7DD7D59420E4042A00B5A5C1 /* ic_left_search@3x.png */,
+				7DD7D59720E4042A00B5A5C1 /* icon_tab_search.png */,
+				7DD7D59820E4042A00B5A5C1 /* icon_tab_search@2x.png */,
+				7DD7D59320E4042900B5A5C1 /* icon_tab_search@3x.png */,
 				7D5E95C920AA820400129D3B /* market-cap-selected.png */,
 				7D5E95BA20AA820200129D3B /* market-cap-selected@2x.png */,
 				7D5E95B920AA820200129D3B /* market-cap-selected@3x.png */,
@@ -577,6 +643,17 @@
 				7DDE805420A3310000673B0F /* CMCMPortfolioTableViewCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		7DF3B22420E5353600C0B3E6 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				7DF3B22520E5354900C0B3E6 /* UIImage+MSTImage.h */,
+				7DF3B22620E5354900C0B3E6 /* UIImage+MSTImage.m */,
+				7DF3B22820E5380A00C0B3E6 /* CMCMWindow.h */,
+				7DF3B22920E5380A00C0B3E6 /* CMCMWindow.m */,
+			);
+			path = lib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -648,7 +725,7 @@
 				TargetAttributes = {
 					7DA2309F209C127A008897EE = {
 						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					7DA230B7209C127A008897EE = {
 						CreatedOnToolsVersion = 9.1;
@@ -693,6 +770,7 @@
 				7D5EEDE320A83B51006E7DBD /* circle-filled.png in Resources */,
 				7D5E95D020AA820400129D3B /* vi-selected@2x.png in Resources */,
 				7D5E95D620AA820400129D3B /* vi-selected@3x.png in Resources */,
+				7DD7D59B20E4042A00B5A5C1 /* ic_left_search.png in Resources */,
 				7D5E95CF20AA820400129D3B /* vi-selected.png in Resources */,
 				7D5E95CE20AA820400129D3B /* market-cap@3x.png in Resources */,
 				7D26B6AF20B458F700DDB98A /* CoinDetail.plist in Resources */,
@@ -701,17 +779,20 @@
 				7DDE800D20A3135E00673B0F /* CMCMPortfolioViewController.xib in Resources */,
 				7D5E95D320AA820400129D3B /* trader-selected@2x.png in Resources */,
 				7D9637D620C281EB004626B8 /* hidebtn@2x.png in Resources */,
+				7DD7D59E20E4042A00B5A5C1 /* icon_tab_search@2x.png in Resources */,
 				7D5E95E720AA82E900129D3B /* star.png in Resources */,
 				7D5E95CB20AA820400129D3B /* market-cap-selected@3x.png in Resources */,
 				7D97C64820C0706800395D77 /* circle-outline@2x.png in Resources */,
 				7D5E95CD20AA820400129D3B /* market-cap.png in Resources */,
 				7D5E95D220AA820400129D3B /* vi@3x.png in Resources */,
+				7DD7D59D20E4042A00B5A5C1 /* icon_tab_search.png in Resources */,
 				7DBC376D20B8100A00D74691 /* AddCoin.plist in Resources */,
 				7D9637CF20C281EB004626B8 /* hidebtn.png in Resources */,
 				7D5E95E620AA82E900129D3B /* star@2x.png in Resources */,
 				7D9637BF20C18B93004626B8 /* CMCMSearchTableViewController.xib in Resources */,
 				7D9637C520C1A6C5004626B8 /* CMCMSearchTableViewCell.xib in Resources */,
 				7D5E95D820AA820400129D3B /* market-cap@2x.png in Resources */,
+				7DD7D59920E4042A00B5A5C1 /* icon_tab_search@3x.png in Resources */,
 				7D9637D220C281EB004626B8 /* qs_close.png in Resources */,
 				7D5E95E820AA82E900129D3B /* star-selected@3x.png in Resources */,
 				7D5E95E320AA82E900129D3B /* star@3x.png in Resources */,
@@ -724,11 +805,15 @@
 				7D5E95E420AA82E900129D3B /* star-selected.png in Resources */,
 				7D5E95D520AA820400129D3B /* trader@3x.png in Resources */,
 				7D5E95D720AA820400129D3B /* trader.png in Resources */,
+				7DD7D59A20E4042A00B5A5C1 /* ic_left_search@3x.png in Resources */,
 				7D9637D420C281EB004626B8 /* btn_Add@3x.png in Resources */,
 				7D9637D120C281EB004626B8 /* btn_Add@2x.png in Resources */,
 				7D9637D720C281EB004626B8 /* hidebtn@3x.png in Resources */,
 				7DDE805620A3310000673B0F /* CMCMPortfolioTableViewCell.xib in Resources */,
 				7D5E95DA20AA820400129D3B /* vi.png in Resources */,
+				7DD7D59C20E4042A00B5A5C1 /* ic_left_search@2x.png in Resources */,
+				7DD7D59220E402B900B5A5C1 /* CMCMSearchViewController.xib in Resources */,
+				7DF3B21D20E5184C00C0B3E6 /* ManagerCoin.sqlite in Resources */,
 				7D5EEDE420A83B51006E7DBD /* circle-outline.png in Resources */,
 				7D9637D020C281EB004626B8 /* qs_close@2x.png in Resources */,
 				7D9637D520C281EB004626B8 /* qs_close@3x.png in Resources */,
@@ -789,26 +874,33 @@
 				7DDE804F20A3196E00673B0F /* CMCMFavoritesViewController.m in Sources */,
 				7D68B2B620ABEED000E240A5 /* CMCMModelChart.m in Sources */,
 				7D7E244820A48CD80039FF53 /* CMCMCreateItemViewController.m in Sources */,
-				7DB9472620D045C700857B5E /* DatabaseManager.m in Sources */,
+				7D64465120E503F600835354 /* CMCMDatabaseManager.m in Sources */,
 				7D9637C420C1A6C5004626B8 /* CMCMSearchTableViewCell.m in Sources */,
 				7D5EEDE020A835B1006E7DBD /* CMCMModelProtfolio.m in Sources */,
+				7D64465420E5092100835354 /* CMCMDatabaseManager+CMCMItem.m in Sources */,
 				7D9637BE20C18B93004626B8 /* CMCMSearchTableViewController.m in Sources */,
+				7DF3B21C20E5118100C0B3E6 /* CMCMApplication.m in Sources */,
 				7DA230B3209C127A008897EE /* main.m in Sources */,
 				7D68B2B220ABD99100E240A5 /* CMCMChartAPI.m in Sources */,
+				7DF3B22320E5345F00C0B3E6 /* CMCMNavigationViewController.m in Sources */,
 				7DDE805520A3310000673B0F /* CMCMPortfolioTableViewCell.m in Sources */,
 				7DA230DF209C1362008897EE /* CMCMAPI.m in Sources */,
 				7D68B2AD20ABD92B00E240A5 /* CMCMDetailItemViewController.m in Sources */,
 				7D20AE1320A1C68000AA9204 /* CMCMItemModel.m in Sources */,
 				7D70CA3520B7AFAC0000A0F0 /* CMCMChartView.m in Sources */,
+				7DF3B22020E52A4800C0B3E6 /* CMCMSearchBar.m in Sources */,
 				7D97C64C20C092C800395D77 /* CMCMModelSearch.m in Sources */,
 				7D20AE1620A1CFC400AA9204 /* CMCMQuotesModel.m in Sources */,
 				7DA230A5209C127A008897EE /* AppDelegate.m in Sources */,
 				7D68B2B920AC2FE600E240A5 /* NSDate+Utilities.m in Sources */,
 				7DDE800C20A3135E00673B0F /* CMCMPortfolioViewController.m in Sources */,
+				7DF3B22720E5354900C0B3E6 /* UIImage+MSTImage.m in Sources */,
 				7D26B6AC20B457F800DDB98A /* CMCMDetailTableViewCell.m in Sources */,
 				7D0492A720AFE90600C36A9C /* CMCMPointChart.m in Sources */,
+				7DF3B22A20E5380A00C0B3E6 /* CMCMWindow.m in Sources */,
 				7D20AE0D20A1C45000AA9204 /* CMCMHomeTableViewCell.m in Sources */,
 				7DA230E5209C16BF008897EE /* CMCMHomeViewController.m in Sources */,
+				7DD7D59120E402B900B5A5C1 /* CMCMSearchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -955,7 +1047,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: GIANG CHAU NGUYEN (57YS2XJLTT)";
-				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 57YS2XJLTT;
 				GCC_PREFIX_HEADER = ManagerCoin/PrefixHeader.h;
 				INFOPLIST_FILE = ManagerCoin/Info.plist;
@@ -963,9 +1056,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.enixlabvn.managercoin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1ce391f1-41b0-4179-bbfc-b630f686f775";
-				PROVISIONING_PROFILE_SPECIFIER = Managercoin;
-				TARGETED_DEVICE_FAMILY = 1;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -976,7 +1069,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: GIANG CHAU NGUYEN (57YS2XJLTT)";
-				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 57YS2XJLTT;
 				GCC_PREFIX_HEADER = ManagerCoin/PrefixHeader.h;
 				INFOPLIST_FILE = ManagerCoin/Info.plist;
@@ -985,9 +1079,9 @@
 				"OTHER_SWIFT_FLAGS[arch=*]" = "$(inherited) -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/PageMenu/PageMenu.modulemap\" $(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = io.enixlabvn.managercoin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1ce391f1-41b0-4179-bbfc-b630f686f775";
-				PROVISIONING_PROFILE_SPECIFIER = Managercoin;
-				TARGETED_DEVICE_FAMILY = 1;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
