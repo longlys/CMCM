@@ -62,9 +62,16 @@
         NSString *numberAsString = [numberFormatter stringFromNumber:num];
         self.lbValue.text = [NSString stringWithFormat:@"$%@",numberAsString];
     }else if ([title isEqualToString:@"Availiable Supply"]) {
-        self.lbValue.text =[NSString stringWithFormat:@"$%@",model.max_supply];
+        NSNumber *num = model.max_supply;
+        if (model.max_supply < 0) {
+            num = 0;
+        }
+        NSString *numberAsString = [numberFormatter stringFromNumber:num];
+        self.lbValue.text = [NSString stringWithFormat:@"$%@",numberAsString];
     }else if ([title isEqualToString:@"Total Supply"]) {
-        self.lbValue.text = [NSString stringWithFormat:@"$%@",model.total_supply];
+        NSNumber *num = model.total_supply;
+        NSString *numberAsString = [numberFormatter stringFromNumber:num];
+        self.lbValue.text = [NSString stringWithFormat:@"$%@",numberAsString];
     }else if ([title isEqualToString:@"% Change 1h"]) {
         NSNumber *num = @(modelPrice.percent_change_1h);
         NSString *numberAsString = [numberFormatter stringFromNumber:num];

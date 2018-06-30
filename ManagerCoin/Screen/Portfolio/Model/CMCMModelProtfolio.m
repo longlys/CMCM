@@ -13,11 +13,11 @@
 -(id)initWithItem:(NSString *)title
         andsymbol:(NSString *)symbol
      andtradedate:(NSString *)tradedate
-      andQuanlity:(NSInteger )quanlity
-         andprice:(NSInteger )price
-         andtotal:(NSInteger )total
-     andpriceType:(NSInteger )priceType
-     andidItemPro:(NSInteger )idItemPro
+      andQuanlity:(float )quanlity
+         andprice:(float )price
+         andtotal:(float )total
+     andpriceType:(float )priceType
+     andidItemPro:(NSString *)idItemPro
      andidCoin:(NSString *)idCoin
 {
     self = [super init];

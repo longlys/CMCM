@@ -16,17 +16,12 @@
     
     [super sendEvent:event];
     
-    // Was it a touch?
     if (event.type == UIEventTypeTouches) {
-        // Get touch phase.
         NSSet *allTouches = [event allTouches];
         self.touchesCount = (int)allTouches.count;
-        //        NSLog(@"%ld", allTouches.count);
         UITouchPhase phase = [((UITouch *)[allTouches anyObject]) phase];
-        // Check what to do.
         switch (phase) {
             case UITouchPhaseEnded:
-                // Reset counter.
             {
                 
                 

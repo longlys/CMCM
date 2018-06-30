@@ -18,6 +18,8 @@
 #define sNavBackgroundColor [UIColor colorWithRed:30/255.f green:30/255.f blue:30/255.f alpha:1.0f]
 #define sTitleColor [UIColor colorWithRed:230/255.f green:230/255.f blue:230/255.f alpha:1.0f]
 #define sTinColor [UIColor colorWithRed:255/255.f green:147/255.f blue:0/255.f alpha:1.0f]
+#define sLine [UIColor colorWithRed:150/255.f green:150/255.f blue:150/255.f alpha:1.0f]
+#define sBackgroundColor2 [UIColor colorWithRed:44/255.f green:44/255.f blue:44/255.f alpha:1.0f]
 
 
 #import "CMCMApplication.h"

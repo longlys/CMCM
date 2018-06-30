@@ -21,7 +21,7 @@
     itemModel.priceType = [s intForColumn:@"priceType"];
     itemModel.symbol = [s stringForColumn:@"symbol"];
     itemModel.artwork = [s stringForColumn:@"artwork"];
-    itemModel.idItemPro = [s intForColumn:@"idItemPro"];
+    itemModel.idItemPro = [s stringForColumn:@"idItemPro"];
     return itemModel;
 }
 
@@ -70,9 +70,9 @@
 - (void)insertTrackItem:(CMCMModelProtfolio *)trackModel withComplete:(void (^)(CMCMModelProtfolio *trackModel, NSError *error))completeBlock {
     [self writeWithBlock:^BOOL(CMCMDatabaseManagerWriteBlock writeBlock) {
         if (trackModel) {
-            NSString *sql = @"INSERT INTO MCoin (idCoin, quanlity, createAt, title, price, artwork, total, priceType, symbol) VALUES (?,?,?,?,?,?,?,?,?)";
+            NSString *sql = @"INSERT INTO MCoin (idCoin, quanlity, createAt, title, price, artwork, total, priceType, symbol, idItemPro) VALUES (?,?,?,?,?,?,?,?,?,?)";
 
-            BOOL result = writeBlock(sql, trackModel.idCoin, @(trackModel.quanlity), trackModel.tradedate, trackModel.title, @(trackModel.price), trackModel.artwork, @(trackModel.total), @(trackModel.priceType), trackModel.symbol);
+            BOOL result = writeBlock(sql, trackModel.idCoin, @(trackModel.quanlity), trackModel.tradedate, trackModel.title, @(trackModel.price), trackModel.artwork, @(trackModel.total), @(trackModel.priceType), trackModel.symbol, trackModel.idItemPro);
             if (result) {
                 [self mainTheard:^{
                     if (completeBlock) completeBlock(trackModel, nil);

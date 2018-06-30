@@ -120,7 +120,7 @@ static CMCMAPI *_sharedObject = nil;
     [task resume];
 }
 
-- (void)getCoinWithPriceUSD:(NSInteger )idItem  complete:(void (^)(CMCMItemModel *resul, NSError *error))completionBlock
+- (void)getCoinWithPriceUSD:(NSInteger )idItem complete:(void (^)(CMCMItemModel *resul, NSError *error))completionBlock
 {
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:nil delegateQueue:nil];

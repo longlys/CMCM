@@ -13,6 +13,9 @@
 #import "CMCMAPI.h"
 #import "CMCMModelProtfolio.h"
 @import GoogleMobileAds;
+#import "DLPieChart.h"
+#import "CMCMModelpieChart.h"
+#define sHeightHeaderView 300
 
 @interface CMCMPortfolioViewController ()<UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate>
 
@@ -22,7 +25,7 @@
 @property (nonatomic) UIBarButtonItem *btnEdit;
 @property (nonatomic) CMCMAPI *api;
 @property(nonatomic, strong) GADBannerView *bannerView;
-
+@property(nonatomic) DLPieChart *chartView;
 @end
 
 @implementation CMCMPortfolioViewController
@@ -57,7 +60,8 @@
     self.bannerView.rootViewController = self;
     [self.bannerView loadRequest:[GADRequest request]];
     self.bannerView.delegate = self;
-
+    
+    //chart
 }
 - (void)addBannerViewToView:(UIView *)bannerView {
     bannerView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -89,21 +93,35 @@
 
 -(void)reloadDatabase{
     weakify(self);
-    [self_weak_.arrayDataTableView removeAllObjects];
     [cmcmDBMgr allTracks:^(NSArray *arrayItems) {
-        [self_weak_.arrayDataTableView addObjectsFromArray:arrayItems];
-        for (int i = 0; i < self_weak_.arrayDataTableView.count; i++) {
-            CMCMModelProtfolio *model = [self_weak_.arrayDataTableView objectAtIndex:i];
-            [self_weak_.api getCoinWithPriceUSD:model.idItemPro complete:^(CMCMItemModel *resul, NSError *error) {
-                if (error == nil) {
-                    model.priceNow = resul.quotesUSD.price;
-                    if (i == self_weak_.arrayDataTableView.count-1) {
-                        [self_weak_.tableView reloadData];
-                    }
-                }
-            }];
-        }
+        self_weak_.arrayDataTableView = arrayItems.mutableCopy;
+        [self_weak_ requestWithDB:arrayItems complete:^(NSArray *arrTems, NSError *error) {
+            self_weak_.arrayDataTableView = arrTems.mutableCopy;
+            [self_weak_.tableView reloadData];
+        }];
     }];
+}
+-(void)requestWithDB:(NSArray *)arrayItems complete:(void (^)(NSArray *arrTems, NSError *error))completionBlock{
+    weakify(self);
+    NSMutableArray *tmpArray = [NSMutableArray new];
+    __block NSInteger Scount = 0;
+    for (int i = 0; i < arrayItems.count; i++) {
+        CMCMModelProtfolio *m = [arrayItems objectAtIndex:i];
+        [self_weak_.api getCoinWithPriceUSD:[m.idItemPro integerValue]-1 complete:^(CMCMItemModel *resul, NSError *error) {
+            CMCMModelProtfolio *model = [arrayItems objectAtIndex:i];
+            if (error == nil) {
+                model.priceNow = resul.quotesUSD.price;
+                model.total = model.quanlity * model.priceNow;
+            } else {
+                model.total = model.quanlity * model.price;
+            }
+            [tmpArray addObject:model];
+            Scount = Scount+1;
+            if (Scount == arrayItems.count) {
+                completionBlock(tmpArray, nil);
+            }
+        }];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -135,7 +153,6 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     CMCMModelProtfolio *model = [self.arrayDataTableView objectAtIndex:indexPath.row];
-    model.idItemPro = indexPath.row;
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         weakify(self);
         [cmcmDBMgr deleteTracks:@[model] completion:^(NSError *error) {
@@ -145,5 +162,41 @@
 
     }
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return sHeightHeaderView;
+}
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    CGRect f = [UIScreen mainScreen].bounds;
+    f.size.height = sHeightHeaderView;
+    UIView *view = [[UIView alloc] initWithFrame:f];
+    [view setBackgroundColor:sLine];
+    self.view.clipsToBounds = YES;
+    self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
+
+    NSMutableArray *arrayDataChart = [NSMutableArray new];
+    self.chartView  = [[DLPieChart alloc] initWithFrame:f];
+    for (int i = 0; i < [self.arrayDataTableView count]; i++) {
+        CMCMModelProtfolio *model = [self.arrayDataTableView objectAtIndex:i];
+        CMCMModelpieChart *modelChar = [[CMCMModelpieChart alloc] init];
+        modelChar.symbol = model.symbol;
+        modelChar.total = model.total;
+        [arrayDataChart addObject:modelChar];
+    }
+    NSMutableArray *arrayDataChartView = [NSMutableArray new];
+    for (int i = 0; i < arrayDataChart.count; i++) {
+        CMCMModelpieChart *m = [arrayDataChart objectAtIndex:i];
+        NSNumber *num = [NSNumber numberWithFloat:m.total];
+        [arrayDataChartView addObject:num];
+    }
+    [self.chartView renderInLayer:self.chartView dataArray:arrayDataChartView];
+
+    [view addSubview:self.chartView];
+    self.chartView.clipsToBounds = YES;
+    self.chartView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
+    return view;
+}
+
 
 @end

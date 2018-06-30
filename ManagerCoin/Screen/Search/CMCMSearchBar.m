@@ -33,7 +33,7 @@
     
     UIImage *searchIcon = [UIImage imageNamed:@"icon_tab_search"];
     _searchImage = searchIcon;
-    self.backgroundColor = [UIColor redColor];
+    self.backgroundColor =sBackgroundColor2;
     
     NSUInteger boundsWidth = [UIScreen mainScreen].bounds.size.width;
     NSUInteger textFieldHeight = kSearchBarHeight - 2*kYMargin;
@@ -64,7 +64,7 @@
     self.textField.textColor = sTitleColor;
     [self.textField setTintColor:sTitleColor];
     [self.textField setBackgroundColor:[UIColor clearColor]];
-    [self.textField.rightView setTintColor:[UIColor redColor]];
+    [self.textField.rightView setTintColor:[UIColor clearColor]];
     [self.textField.rightView setBackgroundColor:[UIColor yellowColor]];
     
     self.textField.textAlignment = NSTextAlignmentLeft;

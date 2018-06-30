@@ -150,7 +150,7 @@
     CGRect f = [UIScreen mainScreen].bounds;
     f.size.height = 60;
     UIView *view = [[UIView alloc] initWithFrame:f];
-    [view setBackgroundColor:sBackgroundColor];
+    [view setBackgroundColor:sBackgroundColor2];
 
     float w = view.frame.size.width / 8;
     

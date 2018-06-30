@@ -19,12 +19,12 @@
 @property (nonatomic) NSString *symbol;
 @property (nonatomic) NSString *tradedate;
 @property (nonatomic) NSString *artwork;
-@property NSInteger quanlity;
-@property NSInteger price;
-@property NSInteger total;
-@property NSInteger priceType;
-@property NSInteger idItemPro;
-@property NSInteger priceNow;
+@property (nonatomic) NSString *idItemPro;
+@property float quanlity;
+@property float price;
+@property float total;
+@property float priceType;
+@property float priceNow;
 
 @property (nonatomic) NSString  *idCoin;
 

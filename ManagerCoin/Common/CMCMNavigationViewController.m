@@ -22,8 +22,7 @@
     self.navigationBar.translucent = NO;
     [self updateColor];
     self.backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-    UIImage *image = [UIImage imageNamed:@"btn_left_menu"];
-
+    [self.backButton setTintColor:sTitleColor];
 }
 -(void)updateColor {
     self.view.backgroundColor = sNavBackgroundColor;

@@ -25,12 +25,13 @@
 @property(nonatomic) NSArray *arrayChart;
 @property (nonatomic) UIControl *viewChart;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (nonatomic) NSMutableArray *arrKK;
 @property (nonatomic) NSArray *arrayTableView;
 @property (nonatomic) float oldX, oldY;
 @property (nonatomic) BOOL dragging;
 @property(nonatomic, strong) GADBannerView *bannerView;
-
+@property(nonatomic) UILabel *lbLastValue;
+@property (nonatomic) NSMutableArray *arrButton;
 @end
 #define cItemTableViewCell @"ItemTableViewCell"
 #define sHeightHeaderView 300
@@ -68,6 +69,8 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.arrKK = [NSMutableArray new];
+    self.arrButton = [NSMutableArray new];
     [self.view setBackgroundColor:[UIColor blackColor]];
     self.arrayChart = [NSArray new];
     self.apiChart = [[CMCMChartAPI alloc] init];
@@ -141,6 +144,7 @@
 -(void)getdatabaseChartWidthType:(ChartType )type{
     [self.apiChart loadDataChartWithStyle:type withCodeItem:self.currentItem.title complete:^(CMCMModelChart *resul, NSError *error) {
         self.modelChart = resul;
+        
         CMCMChartView *subChartView = [[CMCMChartView alloc] initWithFrame:self.viewChart.bounds];
         {
             CMCMChartData *chartData = [CMCMChartData new];
@@ -153,19 +157,49 @@
             }
             chartData.data = points;
             [chartData setDrawBlock:^(CGContextRef context, CGPoint from, CGPoint to) {
-                CGContextSetStrokeColorWithColor(context, [[UIColor redColor] CGColor]);
+                CGContextSetStrokeColorWithColor(context, [sTinColor CGColor]);
                 CGContextSetLineWidth(context, 1.0);
                 CGContextMoveToPoint(context, from.x, from.y);
                 CGContextAddLineToPoint(context, to.x, to.y);
                 CGContextDrawPath(context, kCGPathStroke);
             }];
             [subChartView.chartData addObject:chartData];
-            
             [subChartView setNeedsDisplay];
         }
 
         [subChartView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [self.viewChart addSubview:subChartView];
+        [subChartView setBackgroundColor:sBackgroundColor];
+        [self.viewChart setBackgroundColor:[UIColor yellowColor]];
+        
+        float max = 0;
+
+        for (NSArray * arr in self.modelChart.price_usd) {
+            float tmp = [arr.lastObject floatValue];
+            if (tmp > max) {
+                max = tmp;
+            }
+        }
+        CGRect fk = self.viewChart.bounds;
+        fk.size.height = 15;
+        fk.size.width = 100;
+        float yy = self.viewChart.bounds.size.height/5;
+        for (int j = 0; j < 5; j++) {
+            fk.origin.y = self.viewChart.bounds.size.height - yy*(j+1);
+            UILabel *lb = [[UILabel alloc] initWithFrame:fk];
+            float xx = max/5*(j+1);
+            
+            NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+            [numberFormatter setPositiveFormat:@"###,###,###"];
+            
+            NSInteger total = [self.currentItem.total_supply integerValue];
+            NSString *formattedNumberString = [numberFormatter stringFromNumber:[NSNumber numberWithFloat:xx]];
+            lb.text = [NSString stringWithFormat:@"$ %@",formattedNumberString];
+
+//            lb.text = [NSString stringWithFormat:@"$ %.0f",xx];
+            [lb setTextColor:sTitleColor];
+            [self.viewChart addSubview:lb];
+        }
     }];
 }
 
@@ -246,7 +280,6 @@
         CGRect frame = self.viewChart.frame;
         frame.origin.x = self.viewChart.frame.origin.x + touchLocation.x - self.oldX;
         frame.origin.y =  self.viewChart.frame.origin.y + touchLocation.y - self.oldY;
-        NSLog(@"X: %f -  Y: %f", frame.origin.x, frame.origin.y);
     }
 }
 
@@ -274,44 +307,71 @@
     fChar.size.height = sHeightCharView;
     fChar.origin.y = sHeightHeaderView - sHeightCharView - sHeightControl;
     self.viewChart = [[UIView alloc] initWithFrame:fChar];
-    [self getdatabaseChartWidthType:TypeMin];
+    [self getdatabaseChartWidthType:TypeALL];
     [self.viewChart setBackgroundColor:sBackgroundColor];
-    [view setBackgroundColor:sBackgroundColor];
+    [view setBackgroundColor:sBackgroundColor2];
     [view addSubview:self.viewChart];
     CGRect fC = [UIScreen mainScreen].bounds;
     fC.size.height = sHeightControl;
     fC.origin.y = sHeightCharView+sHeightControl;
     UIView *viewControl = [[UIView alloc] initWithFrame:fC];
-    [viewControl setBackgroundColor:[UIColor redColor]];
+    [viewControl setBackgroundColor:[UIColor clearColor]];
     CMCMQuotesModel *q = self.currentItem.quotesUSD;
     NSArray *arr = [[NSArray alloc] initWithObjects:@"H", @"24h",@"1W",@"1M",@"3M",@"6M",@"1Y",@"All", nil];
     [view addSubview:viewControl];
     float w = [UIScreen mainScreen].bounds.size.width/8;
+    float h = viewControl.bounds.size.height*2/3;
     CGRect fBtn = viewControl.bounds;
     fBtn.size.width = w;
+    fBtn.size.height = h;
+    fBtn.origin.y = (viewControl.bounds.size.height - h)/2;
     for (int i = 0; i < arr.count; i++) {
         fBtn.origin.x = w*i;
         UIButton *btn = [[UIButton alloc] initWithFrame:fBtn];
         btn.tag = i;
         [btn addTarget:self action:@selector(btnTouchChangeChart:) forControlEvents:UIControlEventTouchUpInside];
-        [btn setBackgroundColor:[UIColor greenColor]];
+        [btn setBackgroundColor:[UIColor clearColor]];
+        if (i == arr.count-1) {
+            [btn setBackgroundColor:sTinColor];
+        }
+        btn.layer.borderColor = sTinColor.CGColor;
+        btn.layer.borderWidth = 0.5f;
+        btn.layer.cornerRadius = 10;
         [btn setTitle:[arr objectAtIndex:i] forState:UIControlStateNormal];
+        [self.arrButton addObject:btn];
         [viewControl addSubview:btn];
     }
     
     CGRect flb = [UIScreen mainScreen].bounds;
     flb.size.height = sHeightControl;
 
-    UILabel *lb = [[UILabel alloc] initWithFrame:flb];
-    [lb setTextColor:sTitleColor];
-    lb.text = [NSString stringWithFormat:@"$ %@",self.currentItem.total_supply];
-    lb.textAlignment = NSTextAlignmentCenter;
-    [view addSubview:lb];
+    self.lbLastValue = [[UILabel alloc] initWithFrame:flb];
+    [self.lbLastValue setTextColor:sTitleColor];
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setPositiveFormat:@"###,###,###,###"];
+    CMCMQuotesModel *modelPrice = self.currentItem.quotesUSD;
+    
+    NSNumber *num = @(modelPrice.market_cap);
+    NSString *numberAsString = [numberFormatter stringFromNumber:num];
+    self.lbLastValue.text = [NSString stringWithFormat:@"$%@",numberAsString];
+
+    self.lbLastValue.textAlignment = NSTextAlignmentCenter;
+    [view addSubview:self.lbLastValue];
     
     return view;
 }
 
+-(void)updateUIButton:(NSInteger )index{
+    for (UIButton *btn in self.arrButton) {
+        [btn setBackgroundColor:[UIColor clearColor]];
+        if (btn.tag == index) {
+            [btn setBackgroundColor:sTinColor];
+        }
+    }
+}
+
 -(void)btnTouchChangeChart:(UIButton *)sender{
+    [self updateUIButton:sender.tag];
     switch (sender.tag) {
         case 0:
             [self getdatabaseChartWidthType:TypeHou];

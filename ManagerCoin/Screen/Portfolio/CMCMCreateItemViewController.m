@@ -32,8 +32,8 @@
 @property (nonatomic) UIButton *btnDonePicker;
 @property (nonatomic) UIButton *btnDoneTextField;
 @property (nonatomic) NSInteger isBuy;
-@property (nonatomic) NSInteger quality;
-@property (nonatomic) NSInteger price;
+@property (nonatomic) float quality;
+@property (nonatomic) float price;
 @property (nonatomic)UIDatePicker* picker;
 @property (weak, nonatomic) IBOutlet UIButton *btnClose;
 @property (weak, nonatomic) IBOutlet UIButton *btnChangeTypePrice;
@@ -290,14 +290,13 @@
 }
 
 -(void)setupValueTotal{
-    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-    [numberFormatter setPositiveFormat:@"##,##,###"];
-
-    NSInteger total = self.quality*self.price;
-    NSString *formattedNumberString = [numberFormatter
-                                       stringFromNumber:[NSNumber numberWithFloat:total]];
-
-    self.lbTotal.text = [NSString stringWithFormat:@"$ %@", formattedNumberString];
+//    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+//    [numberFormatter setPositiveFormat:@"##,##,###"];
+//
+    float total = self.quality*self.price;
+//    NSString *formattedNumberString = [numberFormatter
+//                                       stringFromNumber:[NSNumber numberWithFloat:total]];
+    self.lbTotal.text = [NSString stringWithFormat:@"$ %f", total];
 }
 -(BOOL)textFieldShouldBeginEditing:(UITextField*)textField {
     [self.btnDoneTextField setHidden:NO];
@@ -321,7 +320,6 @@
 -(void)setDateCustom:(UIDatePicker *)sender {
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSLog(@"Picked the date %@", [dateFormatter stringFromDate:[sender date]]);
     [self.btnDate setTitle:[NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:[sender date]]] forState:UIControlStateNormal];
 }
 
@@ -356,7 +354,7 @@
     [self.api getCoinWithPriceUSD:[self.sItem.idItem integerValue]-1 complete:^(CMCMItemModel *resul, NSError *error) {
         if (error == nil) {
             self_weak_.price = resul.quotesUSD.price;
-            self_weak_.textField2.text = [NSString stringWithFormat:@"%ld",(long)self_weak_.price];
+            self_weak_.textField2.text = [NSString stringWithFormat:@"$ %f", resul.quotesUSD.price];
         }
     }];
 }
@@ -372,6 +370,7 @@
     model.priceType = self.numType;
     model.symbol = self.sItem.symbol;
     model.artwork = self.sItem.image;
+    model.idItemPro = self.sItem.idItem;
     
     NSDate *date = [NSDate date];
     NSTimeInterval ti = [date timeIntervalSince1970];

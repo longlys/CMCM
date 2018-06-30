@@ -35,7 +35,6 @@
 + (NSString *)DBPath
 {
     NSString *documentsDir = [self documentsPath];
-    //NSLog(@"dbpath : %@",documentsDir);
     return [documentsDir stringByAppendingPathComponent:@"ManagerCoin.sqlite"];
 }
 + (NSString *)documentsPath{

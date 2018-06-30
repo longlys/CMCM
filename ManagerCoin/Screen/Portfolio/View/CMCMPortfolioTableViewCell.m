@@ -42,6 +42,9 @@
 + (instancetype)CMCM_newCellWithReuseIdentifier:(NSString *)reuseIdentifier{
     CMCMPortfolioTableViewCell *cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass(self) owner:nil options:nil].firstObject;
     [cell setValue:reuseIdentifier forKey:@"reuseIdentifier"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.selectedBackgroundView = [UIView new];
+    cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
     return cell;
 }
 
@@ -58,7 +61,6 @@
     float b = item.price;
     float r = a/b*100 - 100;
     
-    NSLog(@"%@ = %f", item.symbol, r);
     self.lbvauleChange.text = [NSString stringWithFormat:@"%.2f%%",r];
     if (r>0) {
         [self.lbvauleChange setTextColor:[UIColor greenColor]];

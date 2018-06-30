@@ -15,6 +15,8 @@
 		7D26B6AC20B457F800DDB98A /* CMCMDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D26B6AA20B457F800DDB98A /* CMCMDetailTableViewCell.m */; };
 		7D26B6AD20B457F800DDB98A /* CMCMDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D26B6AB20B457F800DDB98A /* CMCMDetailTableViewCell.xib */; };
 		7D26B6AF20B458F700DDB98A /* CoinDetail.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D26B6AE20B458F700DDB98A /* CoinDetail.plist */; };
+		7D543D9920E76AAC002CE5B7 /* DLPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D543D9820E76AAC002CE5B7 /* DLPieChart.m */; };
+		7D543D9C20E7837F002CE5B7 /* CMCMModelpieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D543D9B20E7837F002CE5B7 /* CMCMModelpieChart.m */; };
 		7D5E95CB20AA820400129D3B /* market-cap-selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D5E95B920AA820200129D3B /* market-cap-selected@3x.png */; };
 		7D5E95CC20AA820400129D3B /* market-cap-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D5E95BA20AA820200129D3B /* market-cap-selected@2x.png */; };
 		7D5E95CD20AA820400129D3B /* market-cap.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D5E95BB20AA820200129D3B /* market-cap.png */; };
@@ -137,6 +139,10 @@
 		7D26B6AA20B457F800DDB98A /* CMCMDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMCMDetailTableViewCell.m; sourceTree = "<group>"; };
 		7D26B6AB20B457F800DDB98A /* CMCMDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CMCMDetailTableViewCell.xib; sourceTree = "<group>"; };
 		7D26B6AE20B458F700DDB98A /* CoinDetail.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = CoinDetail.plist; sourceTree = "<group>"; };
+		7D543D9720E76AAC002CE5B7 /* DLPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLPieChart.h; sourceTree = "<group>"; };
+		7D543D9820E76AAC002CE5B7 /* DLPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLPieChart.m; sourceTree = "<group>"; };
+		7D543D9A20E7837F002CE5B7 /* CMCMModelpieChart.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMCMModelpieChart.h; sourceTree = "<group>"; };
+		7D543D9B20E7837F002CE5B7 /* CMCMModelpieChart.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMCMModelpieChart.m; sourceTree = "<group>"; };
 		7D5E95B920AA820200129D3B /* market-cap-selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "market-cap-selected@3x.png"; sourceTree = "<group>"; };
 		7D5E95BA20AA820200129D3B /* market-cap-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "market-cap-selected@2x.png"; sourceTree = "<group>"; };
 		7D5E95BB20AA820200129D3B /* market-cap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "market-cap.png"; sourceTree = "<group>"; };
@@ -339,6 +345,17 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		7D543D9620E76AAC002CE5B7 /* Pie Chart Library */ = {
+			isa = PBXGroup;
+			children = (
+				7D543D9720E76AAC002CE5B7 /* DLPieChart.h */,
+				7D543D9820E76AAC002CE5B7 /* DLPieChart.m */,
+				7D543D9A20E7837F002CE5B7 /* CMCMModelpieChart.h */,
+				7D543D9B20E7837F002CE5B7 /* CMCMModelpieChart.m */,
+			);
+			path = "Pie Chart Library";
+			sourceTree = "<group>";
+		};
 		7D5EEDDD20A83593006E7DBD /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -362,6 +379,7 @@
 		7D68B2AF20ABD94600E240A5 /* Chart */ = {
 			isa = PBXGroup;
 			children = (
+				7D543D9620E76AAC002CE5B7 /* Pie Chart Library */,
 				7D70CA3320B7AFAC0000A0F0 /* CMCMChartView.h */,
 				7D70CA3420B7AFAC0000A0F0 /* CMCMChartView.m */,
 			);
@@ -725,7 +743,7 @@
 				TargetAttributes = {
 					7DA2309F209C127A008897EE = {
 						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					7DA230B7209C127A008897EE = {
 						CreatedOnToolsVersion = 9.1;
@@ -877,6 +895,7 @@
 				7D64465120E503F600835354 /* CMCMDatabaseManager.m in Sources */,
 				7D9637C420C1A6C5004626B8 /* CMCMSearchTableViewCell.m in Sources */,
 				7D5EEDE020A835B1006E7DBD /* CMCMModelProtfolio.m in Sources */,
+				7D543D9920E76AAC002CE5B7 /* DLPieChart.m in Sources */,
 				7D64465420E5092100835354 /* CMCMDatabaseManager+CMCMItem.m in Sources */,
 				7D9637BE20C18B93004626B8 /* CMCMSearchTableViewController.m in Sources */,
 				7DF3B21C20E5118100C0B3E6 /* CMCMApplication.m in Sources */,
@@ -891,6 +910,7 @@
 				7DF3B22020E52A4800C0B3E6 /* CMCMSearchBar.m in Sources */,
 				7D97C64C20C092C800395D77 /* CMCMModelSearch.m in Sources */,
 				7D20AE1620A1CFC400AA9204 /* CMCMQuotesModel.m in Sources */,
+				7D543D9C20E7837F002CE5B7 /* CMCMModelpieChart.m in Sources */,
 				7DA230A5209C127A008897EE /* AppDelegate.m in Sources */,
 				7D68B2B920AC2FE600E240A5 /* NSDate+Utilities.m in Sources */,
 				7DDE800C20A3135E00673B0F /* CMCMPortfolioViewController.m in Sources */,
@@ -1047,17 +1067,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: GIANG CHAU NGUYEN (57YS2XJLTT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 57YS2XJLTT;
 				GCC_PREFIX_HEADER = ManagerCoin/PrefixHeader.h;
 				INFOPLIST_FILE = ManagerCoin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.enixlabvn.managercoin;
+				PRODUCT_BUNDLE_IDENTIFIER = io.enixlabvn.coinmanager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "d8cde310-8f7e-4b24-be00-5555cb4fac27";
+				PROVISIONING_PROFILE_SPECIFIER = CoinManager;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1069,18 +1089,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: GIANG CHAU NGUYEN (57YS2XJLTT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 57YS2XJLTT;
 				GCC_PREFIX_HEADER = ManagerCoin/PrefixHeader.h;
 				INFOPLIST_FILE = ManagerCoin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				"OTHER_SWIFT_FLAGS[arch=*]" = "$(inherited) -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/PageMenu/PageMenu.modulemap\" $(inherited) \"-D\" \"COCOAPODS\"";
-				PRODUCT_BUNDLE_IDENTIFIER = io.enixlabvn.managercoin;
+				PRODUCT_BUNDLE_IDENTIFIER = io.enixlabvn.coinmanager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "d8cde310-8f7e-4b24-be00-5555cb4fac27";
+				PROVISIONING_PROFILE_SPECIFIER = CoinManager;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
