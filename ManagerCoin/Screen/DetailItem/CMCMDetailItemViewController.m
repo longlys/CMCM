@@ -13,9 +13,8 @@
 #import "CMCMDetailTableViewCell.h"
 #import "CMCMAPI.h"
 #import "CMCMChartView.h"
-@import GoogleMobileAds;
 
-@interface CMCMDetailItemViewController ()<UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate>
+@interface CMCMDetailItemViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property(nonatomic) CMCMItemModel *currentItem;
 @property (nonatomic) CMCMChartAPI *apiChart;
 @property (nonatomic) CMCMModelChart *modelChart;
@@ -29,7 +28,6 @@
 @property (nonatomic) NSArray *arrayTableView;
 @property (nonatomic) float oldX, oldY;
 @property (nonatomic) BOOL dragging;
-@property(nonatomic, strong) GADBannerView *bannerView;
 @property(nonatomic) UILabel *lbLastValue;
 @property (nonatomic) NSMutableArray *arrButton;
 @end
@@ -88,36 +86,8 @@
     [self loaddayaasdasd];
     self.api = [[CMCMAPI alloc] init];
     [self loadDataWithType];
-    self.bannerView = [[GADBannerView alloc]
-                       initWithAdSize:kGADAdSizeBanner];
-    [self addBannerViewToView:self.bannerView];
-    self.bannerView.adUnitID = idBanner;
-    self.bannerView.rootViewController = self;
-    [self.bannerView loadRequest:[GADRequest request]];
-    self.bannerView.delegate = self;
-
 }
 
-- (void)addBannerViewToView:(UIView *)bannerView {
-    bannerView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:bannerView];
-    [self.view addConstraints:@[
-                                [NSLayoutConstraint constraintWithItem:bannerView
-                                                             attribute:NSLayoutAttributeBottom
-                                                             relatedBy:NSLayoutRelationEqual
-                                                                toItem:self.bottomLayoutGuide
-                                                             attribute:NSLayoutAttributeTop
-                                                            multiplier:1
-                                                              constant:0],
-                                [NSLayoutConstraint constraintWithItem:bannerView
-                                                             attribute:NSLayoutAttributeCenterX
-                                                             relatedBy:NSLayoutRelationEqual
-                                                                toItem:self.view
-                                                             attribute:NSLayoutAttributeCenterX
-                                                            multiplier:1
-                                                              constant:0]
-                                ]];
-}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

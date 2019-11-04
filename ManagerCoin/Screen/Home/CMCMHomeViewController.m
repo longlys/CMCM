@@ -11,19 +11,16 @@
 #import "CMCMHomeTableViewCell.h"
 #import "SVPullToRefresh.h"
 #import "CMCMDetailItemViewController.h"
-@import GoogleMobileAds;
 
 #define cItemTableViewCell @"ItemTableViewCell"
 
-@interface CMCMHomeViewController ()<UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate, GADInterstitialDelegate>
+@interface CMCMHomeViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) NSArray *arrayDataTableView;
 @property (nonatomic) NSArray *arrayFavorites;
 @property (nonatomic) CMCMAPI *api;
 @property (nonatomic) BOOL isAdd;
 @property (nonatomic) CGRect frameView;
-@property(nonatomic, strong) GADBannerView *bannerView;
-@property(nonatomic, strong) GADInterstitial *interstitial;
 
 @end
 
@@ -59,48 +56,7 @@
         [self_weak_ loadNewData];
     }];
     [self.tableView triggerPullToRefresh];
-    
-    self.bannerView = [[GADBannerView alloc]
-                       initWithAdSize:kGADAdSizeBanner];
-    [self addBannerViewToView:self.bannerView];
-    self.bannerView.adUnitID = idBanner;
-    self.bannerView.rootViewController = self;
-    [self.bannerView loadRequest:[GADRequest request]];
-    self.bannerView.delegate = self;
 
-    self.interstitial = [self createAndLoadInterstitial];
-
-}
-- (GADInterstitial *)createAndLoadInterstitial {
-    GADInterstitial *interstitial =
-    [[GADInterstitial alloc] initWithAdUnitID:idinterstitial];
-    interstitial.delegate = self;
-    [interstitial loadRequest:[GADRequest request]];
-    return interstitial;
-}
-- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial {
-    self.interstitial = [self createAndLoadInterstitial];
-}
-
-- (void)addBannerViewToView:(UIView *)bannerView {
-    bannerView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:bannerView];
-    [self.view addConstraints:@[
-                                [NSLayoutConstraint constraintWithItem:bannerView
-                                                             attribute:NSLayoutAttributeBottom
-                                                             relatedBy:NSLayoutRelationEqual
-                                                                toItem:self.bottomLayoutGuide
-                                                             attribute:NSLayoutAttributeTop
-                                                            multiplier:1
-                                                              constant:0],
-                                [NSLayoutConstraint constraintWithItem:bannerView
-                                                             attribute:NSLayoutAttributeCenterX
-                                                             relatedBy:NSLayoutRelationEqual
-                                                                toItem:self.view
-                                                             attribute:NSLayoutAttributeCenterX
-                                                            multiplier:1
-                                                              constant:0]
-                                ]];
 }
 
 -(void)loadteamp{
@@ -201,8 +157,8 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     CMCMItemModel *item = self.arrayDataTableView[indexPath.row];
     CMCMDetailItemViewController *vc = [[CMCMDetailItemViewController alloc] initWithCodeItem:item];
-    if (self.interstitial.isReady) {
-        [self.interstitial presentFromRootViewController:self];
+    if (![sAdsManager getIspro]) {
+        [sAdsManager showAdBanner];
     }
     [self.parentViewController.navigationController pushViewController:vc animated:YES];
 }

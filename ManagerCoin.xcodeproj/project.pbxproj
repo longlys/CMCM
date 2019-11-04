@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6BA4F023236A842600711C27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BA4F022236A842600711C27 /* GoogleService-Info.plist */; };
+		6BA4F02C236A869800711C27 /* RBTabbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA4F026236A869800711C27 /* RBTabbarItem.m */; };
+		6BA4F02D236A869800711C27 /* RBTabbarItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BA4F028236A869800711C27 /* RBTabbarItem.xib */; };
+		6BA4F02E236A869800711C27 /* RBTabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA4F02A236A869800711C27 /* RBTabbarViewController.m */; };
+		6BA4F02F236A869800711C27 /* RBTabbarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BA4F02B236A869800711C27 /* RBTabbarViewController.xib */; };
+		6BA4F033236A879800711C27 /* RBAdsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA4F032236A879700711C27 /* RBAdsManager.m */; };
+		6BA4F038236A927600711C27 /* CMCMSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA4F036236A927600711C27 /* CMCMSettingsViewController.m */; };
+		6BA4F039236A927600711C27 /* CMCMSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BA4F037236A927600711C27 /* CMCMSettingsViewController.xib */; };
+		6BA4F03B236A94B600711C27 /* setting.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BA4F03A236A94B600711C27 /* setting.plist */; };
+		6BA4F03F236ABDDA00711C27 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA4F03E236ABDDA00711C27 /* StoreKit.framework */; };
 		7D0492A720AFE90600C36A9C /* CMCMPointChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0492A620AFE90600C36A9C /* CMCMPointChart.m */; };
 		7D20AE0D20A1C45000AA9204 /* CMCMHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D20AE0B20A1C45000AA9204 /* CMCMHomeTableViewCell.m */; };
 		7D20AE0E20A1C45000AA9204 /* CMCMHomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D20AE0C20A1C45000AA9204 /* CMCMHomeTableViewCell.xib */; };
@@ -126,6 +136,20 @@
 
 /* Begin PBXFileReference section */
 		570CE10CD31D5965620EEE31 /* libPods-ManagerCoin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ManagerCoin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BA4F022236A842600711C27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6BA4F026236A869800711C27 /* RBTabbarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBTabbarItem.m; sourceTree = "<group>"; };
+		6BA4F027236A869800711C27 /* RBTabbarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBTabbarItem.h; sourceTree = "<group>"; };
+		6BA4F028236A869800711C27 /* RBTabbarItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RBTabbarItem.xib; sourceTree = "<group>"; };
+		6BA4F029236A869800711C27 /* RBTabbarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBTabbarViewController.h; sourceTree = "<group>"; };
+		6BA4F02A236A869800711C27 /* RBTabbarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBTabbarViewController.m; sourceTree = "<group>"; };
+		6BA4F02B236A869800711C27 /* RBTabbarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RBTabbarViewController.xib; sourceTree = "<group>"; };
+		6BA4F031236A879700711C27 /* RBAdsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBAdsManager.h; sourceTree = "<group>"; };
+		6BA4F032236A879700711C27 /* RBAdsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBAdsManager.m; sourceTree = "<group>"; };
+		6BA4F035236A927600711C27 /* CMCMSettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMCMSettingsViewController.h; sourceTree = "<group>"; };
+		6BA4F036236A927600711C27 /* CMCMSettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMCMSettingsViewController.m; sourceTree = "<group>"; };
+		6BA4F037236A927600711C27 /* CMCMSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CMCMSettingsViewController.xib; sourceTree = "<group>"; };
+		6BA4F03A236A94B600711C27 /* setting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = setting.plist; sourceTree = "<group>"; };
+		6BA4F03E236ABDDA00711C27 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		7D0492A520AFE90600C36A9C /* CMCMPointChart.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMCMPointChart.h; sourceTree = "<group>"; };
 		7D0492A620AFE90600C36A9C /* CMCMPointChart.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMCMPointChart.m; sourceTree = "<group>"; };
 		7D20AE0A20A1C45000AA9204 /* CMCMHomeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMCMHomeTableViewCell.h; sourceTree = "<group>"; };
@@ -273,6 +297,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BA4F03F236ABDDA00711C27 /* StoreKit.framework in Frameworks */,
 				7DB9472320D0459E00857B5E /* libsqlite3.tbd in Frameworks */,
 				D913EB7254FF6B006BA085B1 /* libPods-ManagerCoin.a in Frameworks */,
 			);
@@ -307,11 +332,53 @@
 		674DB446182226BDA17C93EB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6BA4F03E236ABDDA00711C27 /* StoreKit.framework */,
 				7DB9470B20D02BF400857B5E /* CoreData.framework */,
 				7D9637D820C2BC96004626B8 /* libsqlite3.tbd */,
 				570CE10CD31D5965620EEE31 /* libPods-ManagerCoin.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6BA4F024236A869800711C27 /* TabbarController */ = {
+			isa = PBXGroup;
+			children = (
+				6BA4F025236A869800711C27 /* TabbarItem */,
+				6BA4F029236A869800711C27 /* RBTabbarViewController.h */,
+				6BA4F02A236A869800711C27 /* RBTabbarViewController.m */,
+				6BA4F02B236A869800711C27 /* RBTabbarViewController.xib */,
+			);
+			path = TabbarController;
+			sourceTree = "<group>";
+		};
+		6BA4F025236A869800711C27 /* TabbarItem */ = {
+			isa = PBXGroup;
+			children = (
+				6BA4F026236A869800711C27 /* RBTabbarItem.m */,
+				6BA4F027236A869800711C27 /* RBTabbarItem.h */,
+				6BA4F028236A869800711C27 /* RBTabbarItem.xib */,
+			);
+			path = TabbarItem;
+			sourceTree = "<group>";
+		};
+		6BA4F030236A879700711C27 /* AdsManager */ = {
+			isa = PBXGroup;
+			children = (
+				6BA4F031236A879700711C27 /* RBAdsManager.h */,
+				6BA4F032236A879700711C27 /* RBAdsManager.m */,
+			);
+			path = AdsManager;
+			sourceTree = "<group>";
+		};
+		6BA4F034236A926300711C27 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				6BA4F03A236A94B600711C27 /* setting.plist */,
+				6BA4F035236A927600711C27 /* CMCMSettingsViewController.h */,
+				6BA4F036236A927600711C27 /* CMCMSettingsViewController.m */,
+				6BA4F037236A927600711C27 /* CMCMSettingsViewController.xib */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		7D20AE0F20A1C45A00AA9204 /* View */ = {
@@ -430,6 +497,7 @@
 		7DA23097209C127A008897EE = {
 			isa = PBXGroup;
 			children = (
+				6BA4F022236A842600711C27 /* GoogleService-Info.plist */,
 				7DA230A2209C127A008897EE /* ManagerCoin */,
 				7DA230BB209C127A008897EE /* ManagerCoinTests */,
 				7DA230C6209C127A008897EE /* ManagerCoinUITests */,
@@ -489,6 +557,7 @@
 		7DA230D5209C12DC008897EE /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				6BA4F034236A926300711C27 /* Setting */,
 				7DD7D58D20E402A300B5A5C1 /* Search */,
 				7D68B2A920ABD91600E240A5 /* DetailItem */,
 				7DDE800720A3134400673B0F /* Favorites */,
@@ -544,6 +613,8 @@
 		7DD6115620A6CCA20021373D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				6BA4F030236A879700711C27 /* AdsManager */,
+				6BA4F024236A869800711C27 /* TabbarController */,
 				7DF3B22420E5353600C0B3E6 /* lib */,
 				7DB9471620D038EF00857B5E /* DataBase */,
 				7D68B2B720AC2FE600E240A5 /* NSDate+Utilities.h */,
@@ -743,7 +814,12 @@
 				TargetAttributes = {
 					7DA2309F209C127A008897EE = {
 						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 					7DA230B7209C127A008897EE = {
 						CreatedOnToolsVersion = 9.1;
@@ -794,9 +870,11 @@
 				7D26B6AF20B458F700DDB98A /* CoinDetail.plist in Resources */,
 				7D5E95DC20AA820400129D3B /* trader@2x.png in Resources */,
 				7D97C64620C0706800395D77 /* circle-outline@3x.png in Resources */,
+				6BA4F02D236A869800711C27 /* RBTabbarItem.xib in Resources */,
 				7DDE800D20A3135E00673B0F /* CMCMPortfolioViewController.xib in Resources */,
 				7D5E95D320AA820400129D3B /* trader-selected@2x.png in Resources */,
 				7D9637D620C281EB004626B8 /* hidebtn@2x.png in Resources */,
+				6BA4F023236A842600711C27 /* GoogleService-Info.plist in Resources */,
 				7DD7D59E20E4042A00B5A5C1 /* icon_tab_search@2x.png in Resources */,
 				7D5E95E720AA82E900129D3B /* star.png in Resources */,
 				7D5E95CB20AA820400129D3B /* market-cap-selected@3x.png in Resources */,
@@ -807,6 +885,7 @@
 				7DBC376D20B8100A00D74691 /* AddCoin.plist in Resources */,
 				7D9637CF20C281EB004626B8 /* hidebtn.png in Resources */,
 				7D5E95E620AA82E900129D3B /* star@2x.png in Resources */,
+				6BA4F03B236A94B600711C27 /* setting.plist in Resources */,
 				7D9637BF20C18B93004626B8 /* CMCMSearchTableViewController.xib in Resources */,
 				7D9637C520C1A6C5004626B8 /* CMCMSearchTableViewCell.xib in Resources */,
 				7D5E95D820AA820400129D3B /* market-cap@2x.png in Resources */,
@@ -822,8 +901,10 @@
 				7D5E95DB20AA820400129D3B /* market-cap-selected.png in Resources */,
 				7D5E95E420AA82E900129D3B /* star-selected.png in Resources */,
 				7D5E95D520AA820400129D3B /* trader@3x.png in Resources */,
+				6BA4F02F236A869800711C27 /* RBTabbarViewController.xib in Resources */,
 				7D5E95D720AA820400129D3B /* trader.png in Resources */,
 				7DD7D59A20E4042A00B5A5C1 /* ic_left_search@3x.png in Resources */,
+				6BA4F039236A927600711C27 /* CMCMSettingsViewController.xib in Resources */,
 				7D9637D420C281EB004626B8 /* btn_Add@3x.png in Resources */,
 				7D9637D120C281EB004626B8 /* btn_Add@2x.png in Resources */,
 				7D9637D720C281EB004626B8 /* hidebtn@3x.png in Resources */,
@@ -892,10 +973,12 @@
 				7DDE804F20A3196E00673B0F /* CMCMFavoritesViewController.m in Sources */,
 				7D68B2B620ABEED000E240A5 /* CMCMModelChart.m in Sources */,
 				7D7E244820A48CD80039FF53 /* CMCMCreateItemViewController.m in Sources */,
+				6BA4F038236A927600711C27 /* CMCMSettingsViewController.m in Sources */,
 				7D64465120E503F600835354 /* CMCMDatabaseManager.m in Sources */,
 				7D9637C420C1A6C5004626B8 /* CMCMSearchTableViewCell.m in Sources */,
 				7D5EEDE020A835B1006E7DBD /* CMCMModelProtfolio.m in Sources */,
 				7D543D9920E76AAC002CE5B7 /* DLPieChart.m in Sources */,
+				6BA4F033236A879800711C27 /* RBAdsManager.m in Sources */,
 				7D64465420E5092100835354 /* CMCMDatabaseManager+CMCMItem.m in Sources */,
 				7D9637BE20C18B93004626B8 /* CMCMSearchTableViewController.m in Sources */,
 				7DF3B21C20E5118100C0B3E6 /* CMCMApplication.m in Sources */,
@@ -909,7 +992,9 @@
 				7D70CA3520B7AFAC0000A0F0 /* CMCMChartView.m in Sources */,
 				7DF3B22020E52A4800C0B3E6 /* CMCMSearchBar.m in Sources */,
 				7D97C64C20C092C800395D77 /* CMCMModelSearch.m in Sources */,
+				6BA4F02E236A869800711C27 /* RBTabbarViewController.m in Sources */,
 				7D20AE1620A1CFC400AA9204 /* CMCMQuotesModel.m in Sources */,
+				6BA4F02C236A869800711C27 /* RBTabbarItem.m in Sources */,
 				7D543D9C20E7837F002CE5B7 /* CMCMModelpieChart.m in Sources */,
 				7DA230A5209C127A008897EE /* AppDelegate.m in Sources */,
 				7D68B2B920AC2FE600E240A5 /* NSDate+Utilities.m in Sources */,
@@ -1066,18 +1151,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: GIANG CHAU NGUYEN (57YS2XJLTT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 57YS2XJLTT;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JN2YPT6M3H;
 				GCC_PREFIX_HEADER = ManagerCoin/PrefixHeader.h;
 				INFOPLIST_FILE = ManagerCoin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.enixlabvn.coinmanager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d8cde310-8f7e-4b24-be00-5555cb4fac27";
-				PROVISIONING_PROFILE_SPECIFIER = CoinManager;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1088,10 +1172,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: GIANG CHAU NGUYEN (57YS2XJLTT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 57YS2XJLTT;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JN2YPT6M3H;
 				GCC_PREFIX_HEADER = ManagerCoin/PrefixHeader.h;
 				INFOPLIST_FILE = ManagerCoin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1099,8 +1183,7 @@
 				"OTHER_SWIFT_FLAGS[arch=*]" = "$(inherited) -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/PageMenu/PageMenu.modulemap\" $(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = io.enixlabvn.coinmanager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d8cde310-8f7e-4b24-be00-5555cb4fac27";
-				PROVISIONING_PROFILE_SPECIFIER = CoinManager;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

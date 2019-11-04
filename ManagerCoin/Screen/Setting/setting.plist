@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>description</key>
+		<string>Rate this app</string>
+		<key>name</key>
+		<string>Review</string>
+		<key>icon</key>
+		<string>icon_rate</string>
+		<key>type</key>
+		<string>0</string>
+	</dict>
+	<dict>
+		<key>description</key>
+		<string>Report bugs and tell us what to improve</string>
+		<key>name</key>
+		<string>Feedback</string>
+		<key>icon</key>
+		<string>icon_feedback</string>
+		<key>type</key>
+		<string>0</string>
+	</dict>
+	<dict>
+		<key>description</key>
+		<string>Share this app with your friends</string>
+		<key>name</key>
+		<string>Share</string>
+		<key>icon</key>
+		<string>icon_share</string>
+		<key>type</key>
+		<string>0</string>
+	</dict>
+	<dict>
+		<key>description</key>
+		<string>Remove unwated Ads</string>
+		<key>name</key>
+		<string>Remove Ads</string>
+		<key>icon</key>
+		<string>icon_remove_ads</string>
+		<key>type</key>
+		<string>1</string>
+	</dict>
+	<dict>
+		<key>description</key>
+		<string>Restore your in-app purchase</string>
+		<key>name</key>
+		<string>Restore purchase</string>
+		<key>icon</key>
+		<string>icon_restore</string>
+		<key>type</key>
+		<string>1</string>
+	</dict>
+	<dict>
+		<key>description</key>
+		<string>Version</string>
+		<key>name</key>
+		<string>Version</string>
+		<key>icon</key>
+		<string></string>
+		<key>type</key>
+		<string>0</string>
+	</dict>
+</array>
+</plist>

@@ -11,5 +11,6 @@ pod 'FMDB'
 pod 'Google-Mobile-Ads-SDK'
 pod 'Masonry', '1.1.0'
 pod 'PNChart'
+pod 'Firebase/Analytics'
 
 end

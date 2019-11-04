@@ -9,19 +9,16 @@
 #import "CMCMFavoritesViewController.h"
 #import "CMCMAPI.h"
 #import "CMCMHomeTableViewCell.h"
-@import GoogleMobileAds;
 #import "CMCMDetailItemViewController.h"
 
 #define cItemTableViewCell @"ItemTableViewCell"
 
-@interface CMCMFavoritesViewController ()<UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate, GADInterstitialDelegate>
+@interface CMCMFavoritesViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) NSArray *arrayDataTableView;
 @property (nonatomic) NSArray *arrayFavorites;
 @property (nonatomic) CMCMAPI *api;
-@property(nonatomic, strong) GADBannerView *bannerView;
-@property(nonatomic, strong) GADInterstitial *interstitial;
 
 @end
 
@@ -41,48 +38,9 @@
     self.arrayDataTableView = [NSArray new];
     [self updateFavorites];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFavorites) name:@"UPDATEFAVORITES" object:nil];
-    self.bannerView = [[GADBannerView alloc]
-                       initWithAdSize:kGADAdSizeBanner];
-    [self addBannerViewToView:self.bannerView];
-    self.bannerView.adUnitID = idBanner;
-    self.bannerView.rootViewController = self;
-    [self.bannerView loadRequest:[GADRequest request]];
-    self.bannerView.delegate = self;
-
-    self.interstitial = [self createAndLoadInterstitial];
     
 }
-- (GADInterstitial *)createAndLoadInterstitial {
-    GADInterstitial *interstitial =
-    [[GADInterstitial alloc] initWithAdUnitID:idinterstitial];
-    interstitial.delegate = self;
-    [interstitial loadRequest:[GADRequest request]];
-    return interstitial;
-}
-- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial {
-    self.interstitial = [self createAndLoadInterstitial];
-}
 
-- (void)addBannerViewToView:(UIView *)bannerView {
-    bannerView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:bannerView];
-    [self.view addConstraints:@[
-                                [NSLayoutConstraint constraintWithItem:bannerView
-                                                             attribute:NSLayoutAttributeBottom
-                                                             relatedBy:NSLayoutRelationEqual
-                                                                toItem:self.bottomLayoutGuide
-                                                             attribute:NSLayoutAttributeTop
-                                                            multiplier:1
-                                                              constant:0],
-                                [NSLayoutConstraint constraintWithItem:bannerView
-                                                             attribute:NSLayoutAttributeCenterX
-                                                             relatedBy:NSLayoutRelationEqual
-                                                                toItem:self.view
-                                                             attribute:NSLayoutAttributeCenterX
-                                                            multiplier:1
-                                                              constant:0]
-                                ]];
-}
 
 -(NSArray *)getArrayFavorites{
     NSArray *arr = [NSArray new];
@@ -187,8 +145,8 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     CMCMItemModel *item = self.arrayDataTableView[indexPath.row];
     CMCMDetailItemViewController *vc = [[CMCMDetailItemViewController alloc] initWithCodeItem:item];
-    if (self.interstitial.isReady) {
-        [self.interstitial presentFromRootViewController:self];
+    if (![sAdsManager getIspro]) {
+        [sAdsManager showAdBanner];
     }
     [self.parentViewController.navigationController pushViewController:vc animated:YES];
 }

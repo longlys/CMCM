@@ -13,10 +13,12 @@
 #import "CMCMApplication.h"
 #import "CMCMNavigationViewController.h"
 #import "CMCMWindow.h"
+#import "RBTabbarViewController.h"
+#import "CMCMSettingsViewController.h"
 
+@import Firebase;
 @interface AppDelegate ()
 @property(nonatomic) UITabBarController *tabbar;
-@property (nonatomic, strong, readwrite) CMCMDatabaseManager *databaseManager;
 
 @end
 
@@ -24,20 +26,15 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+    [FIRApp configure];
     _window = [[CMCMWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     ((CMCMWindow*)_window).isFullscreen = NO;
     
     [[UIApplication sharedApplication] setStatusBarStyle:[self styleStatusBar]];
+    [sApplication setupDatabase];
 
-    self.tabbar = [[UITabBarController alloc] init];
-    self.tabbar.tabBar.barTintColor = sBackgroundColor;
-    self.tabbar.tabBar.tintColor = sTinColor;
-
-    self.tabbar.viewControllers = [self viewControllers];
-    self.window.rootViewController = self.tabbar;
+    [self setupRootViewController];
     [self.window makeKeyAndVisible];
-    [[CMCMApplication sharedInstance] setupDatabase];
 
     return YES;
 }
@@ -45,44 +42,37 @@
     return UIStatusBarStyleLightContent;
 }
 
-- (NSArray *) viewControllers {
+- (void)setupRootViewController {
     
     //////
     //Home View Controllers
     //////
-    id homeViewController = [[CMCMSegmentedViewController alloc] init];
-    CMCMNavigationViewController *homeNC = [[CMCMNavigationViewController alloc] initWithRootViewController:homeViewController];
-    [homeNC.navigationBar setTintColor:sBackgroundColor];
-    UIImage *infoIcon0 = [UIImage imageNamed:@"market-cap"];
-    UIImage *infoIconSelected0 =[UIImage imageNamed:@"market-cap-selected"];
-    homeNC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Home"
-                                                      image:infoIcon0
-                                              selectedImage:infoIconSelected0];
+    NSMutableArray *viewControllers = [NSMutableArray new];
     
-    id searchController = [[CMCMSearchViewController alloc] init];
+    CMCMSegmentedViewController *homeVC = [CMCMSegmentedViewController new];
+    CMCMNavigationViewController *navHome = [[CMCMNavigationViewController alloc] initWithRootViewController:homeVC];
+    navHome.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:[UIImage imageNamed:@"market-cap"] selectedImage:[UIImage imageNamed:@"market-cap-selected"]];
+    [viewControllers addObject:navHome];
+
+    
+    CMCMSearchViewController *searchController = [CMCMSearchViewController new];
     CMCMNavigationViewController *searchNC = [[CMCMNavigationViewController alloc] initWithRootViewController:searchController];
-    [searchNC.navigationBar setBackgroundColor:sBackgroundColor];
-    UIImage *infoIcon3 = [UIImage imageNamed:@"icon_tab_search"];
-    UIImage *infoIconSelected3 =[UIImage imageNamed:@"icon_tab_search"];
-    searchNC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"search"
-                                                    image:infoIcon3
-                                            selectedImage:infoIconSelected3];
-    
+    searchNC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:[UIImage imageNamed:@"icon_tab_search"] selectedImage:[UIImage imageNamed:@"icon_tab_search"]];
+    [viewControllers addObject:searchNC];
+
+    CMCMSettingsViewController *myController = [CMCMSettingsViewController new];
+    CMCMNavigationViewController *myNC = [[CMCMNavigationViewController alloc] initWithRootViewController:myController];
+    myNC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:[UIImage imageNamed:@"vi"] selectedImage:[UIImage imageNamed:@"vi-selected"]];
+    [viewControllers addObject:myNC];
+
 
     //////
     //Second View PORTFOLIO
     //////
-    id myController = [[CMCMPortfolioViewController alloc] init];
-    CMCMNavigationViewController *myNC = [[CMCMNavigationViewController alloc] initWithRootViewController:myController];
-    [myNC.navigationBar setBackgroundColor:sBackgroundColor];
-    UIImage *infoIcon2 = [UIImage imageNamed:@"vi"];
-    UIImage *infoIconSelected2 =[UIImage imageNamed:@"vi-selected"];
-    myNC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Portfolio"
-                                                      image:infoIcon2
-                                              selectedImage:infoIconSelected2];
     
-    
-    return @[homeNC, searchNC, myNC];
+    RBTabbarViewController *tabbarViewController = [[RBTabbarViewController alloc] init];
+    [tabbarViewController fmn_setViewControllers:viewControllers];
+    self.window.rootViewController = tabbarViewController;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

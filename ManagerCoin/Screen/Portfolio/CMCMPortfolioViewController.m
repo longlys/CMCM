@@ -12,19 +12,18 @@
 #import "CMCMDatabaseManager.h"
 #import "CMCMAPI.h"
 #import "CMCMModelProtfolio.h"
-@import GoogleMobileAds;
+
 #import "DLPieChart.h"
 #import "CMCMModelpieChart.h"
 #define sHeightHeaderView 300
 
-@interface CMCMPortfolioViewController ()<UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate>
+@interface CMCMPortfolioViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) NSMutableArray *arrayDataTableView;
 @property (nonatomic) UIBarButtonItem *btnAdd;
 @property (nonatomic) UIBarButtonItem *btnEdit;
 @property (nonatomic) CMCMAPI *api;
-@property(nonatomic, strong) GADBannerView *bannerView;
 @property(nonatomic) DLPieChart *chartView;
 @end
 
@@ -53,35 +52,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadDatabase) name:@"AddItemNew" object:nil];
     
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
-    self.bannerView = [[GADBannerView alloc]
-                       initWithAdSize:kGADAdSizeBanner];
-    [self addBannerViewToView:self.bannerView];
-    self.bannerView.adUnitID = idBanner;
-    self.bannerView.rootViewController = self;
-    [self.bannerView loadRequest:[GADRequest request]];
-    self.bannerView.delegate = self;
     
     //chart
-}
-- (void)addBannerViewToView:(UIView *)bannerView {
-    bannerView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:bannerView];
-    [self.view addConstraints:@[
-                                [NSLayoutConstraint constraintWithItem:bannerView
-                                                             attribute:NSLayoutAttributeBottom
-                                                             relatedBy:NSLayoutRelationEqual
-                                                                toItem:self.bottomLayoutGuide
-                                                             attribute:NSLayoutAttributeTop
-                                                            multiplier:1
-                                                              constant:0],
-                                [NSLayoutConstraint constraintWithItem:bannerView
-                                                             attribute:NSLayoutAttributeCenterX
-                                                             relatedBy:NSLayoutRelationEqual
-                                                                toItem:self.view
-                                                             attribute:NSLayoutAttributeCenterX
-                                                            multiplier:1
-                                                              constant:0]
-                                ]];
 }
 
 -(void)fmn_AddItem:(id)sender{

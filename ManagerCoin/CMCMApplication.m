@@ -12,6 +12,7 @@
 @interface CMCMApplication ()
 
 @property (nonatomic, strong, readwrite) CMCMDatabaseManager *databaseManager;
+@property (nonatomic, strong, readwrite) RBAdsManager *adsManager;
 
 @end
 
@@ -30,6 +31,7 @@
 - (void)setupDatabase{
     [CMCMApplication copyDatabaseIfNeeded];
     self.databaseManager = [[CMCMDatabaseManager alloc] initWithPath:[CMCMApplication DBPath]];
+    self.adsManager = [[RBAdsManager alloc] init];
 }
 
 + (NSString *)DBPath

@@ -25,4 +25,6 @@
 #import "CMCMApplication.h"
 #import "AppDelegate.h"
 #import "CMCMAPI.h"
+#import "RBAdsManager.h"
+
 #endif /* PrefixHeader_h */
