@@ -21,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) NSMutableArray *dataArray;
 @end
-#define kRemoveAdsProductIdentifier @"io.hdapps4.musicpin.removeads"
+#define kRemoveAdsProductIdentifier @"io.enixlabvn.coinmanager.removeads"
 
 @implementation CMCMSettingsViewController
 

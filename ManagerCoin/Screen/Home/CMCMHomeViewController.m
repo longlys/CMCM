@@ -158,7 +158,7 @@
     CMCMItemModel *item = self.arrayDataTableView[indexPath.row];
     CMCMDetailItemViewController *vc = [[CMCMDetailItemViewController alloc] initWithCodeItem:item];
     if (![sAdsManager getIspro]) {
-        [sAdsManager showAdBanner];
+        [sAdsManager showInterstitial:self];
     }
     [self.parentViewController.navigationController pushViewController:vc animated:YES];
 }

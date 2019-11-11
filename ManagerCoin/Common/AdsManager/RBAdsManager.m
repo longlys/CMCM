@@ -33,7 +33,7 @@
     GADInterstitial *interstitial = [[GADInterstitial alloc] initWithAdUnitID:idinterstitial];
     interstitial.delegate = self;
     GADRequest *request = [GADRequest request];
-//    request.testDevices = @[kGADSimulatorID];
+    request.testDevices = @[kGADSimulatorID];
     [interstitial loadRequest:request];
     return interstitial;
 }
@@ -42,13 +42,31 @@
 }
 
 -(void)showInterstitial:(UIViewController *)vc{
-    if (self.interstitial.isReady) {
-        [self.interstitial presentFromRootViewController:vc];
+    NSInteger dem = [self getNumberShow]+1;
+    if (dem == 3) {
+        if (self.interstitial.isReady) {
+            [self.interstitial presentFromRootViewController:vc];
+            [self setNumberShow:dem];
+        } else {
+            NSLog(@"Ad wasn't ready");
+        }
+        [self createAndLoadInterstitial];
     } else {
-        NSLog(@"Ad wasn't ready");
+        if (dem>3) {
+            [self setNumberShow:0];
+        } else {
+            [self setNumberShow:dem];
+        }
     }
-    [self createAndLoadInterstitial];
+}
 
+-(void)setNumberShow:(NSInteger )dem{
+    [[NSUserDefaults standardUserDefaults] setInteger:dem forKey:@"NumberShowInterstitial"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(NSInteger )getNumberShow{
+    return [[NSUserDefaults standardUserDefaults] integerForKey:@"NumberShowInterstitial"];
 }
 
 //banner
@@ -76,7 +94,7 @@
     self.bannerView.adUnitID = adUnitID;
     self.bannerView.rootViewController = viewController;
     GADRequest *request = [GADRequest request];
-//    request.testDevices =  @[@"6585155A-E83C-4D3F-A30C-396DA288E17A",kGADSimulatorID];
+    request.testDevices =  @[@"6585155A-E83C-4D3F-A30C-396DA288E17A",kGADSimulatorID];
 
     [self.bannerView loadRequest:request];
 }
