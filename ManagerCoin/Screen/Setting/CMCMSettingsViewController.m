@@ -9,6 +9,8 @@
 #import "CMCMSettingsViewController.h"
 #import <StoreKit/StoreKit.h>
 
+
+
 @interface CMCMSettingsViewController ()<UITableViewDelegate, UITableViewDataSource, SKProductsRequestDelegate, SKPaymentTransactionObserver>{
     SKProductsRequest *productsRequest;
     NSArray *validProducts;
@@ -21,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) NSMutableArray *dataArray;
 @end
+#define YOUR_APP_STORE_ID @"id1405969274"
 #define kRemoveAdsProductIdentifier @"io.enixlabvn.coinmanager.removeads"
 
 @implementation CMCMSettingsViewController
@@ -79,11 +82,14 @@
     switch (indexPath.row) {
         case 0:
             //Rate this app
+            [self rateApp];
             break;
         case 1:
+            [self rateApp];
 //            Feedback
             break;
         case 2:
+            [self shareApp];
             //Share
             break;
         case 3:
@@ -99,6 +105,28 @@
     }
     
 }
+
+-(void)rateApp{
+    
+    static NSString *const iOS7AppStoreURLFormat = @"itms-apps://itunes.apple.com/app/id%@";
+    static NSString *const iOSAppStoreURLFormat = @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@";
+    
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0f) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:iOS7AppStoreURLFormat,YOUR_APP_STORE_ID]]];
+    } else {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:iOSAppStoreURLFormat,YOUR_APP_STORE_ID]]];
+    }
+}
+
+-(void)shareApp
+{
+    NSString *shareLink = @"https://apps.apple.com/us/app/coinmanagertl/id1405969274";
+    NSArray *itemsToShare = @[shareLink];
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc]initWithActivityItems:itemsToShare applicationActivities:nil];
+//    activityVC.excludedActivityTypes = @[UIActivityTypePostToWeibo,UIActivityTypePostToTwitter,UIActivityTypePostToFacebook,UIActivityTypeMail,UIActivityTypeMessage,UIActivityTypeAssignToContact,UIActivityTypePostToTencentWeibo];
+    [self presentViewController:activityVC animated:YES completion:nil];
+}
+
 - (void)tapsRemoveAds{
     NSLog(@"User requests to remove ads");
     activityIndicatorView = [[UIActivityIndicatorView alloc]
