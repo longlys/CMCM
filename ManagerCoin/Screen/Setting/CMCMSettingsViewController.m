@@ -8,13 +8,12 @@
 
 #import "CMCMSettingsViewController.h"
 #import <StoreKit/StoreKit.h>
-
+#import "MBProgressHUD.h"
 
 
 @interface CMCMSettingsViewController ()<UITableViewDelegate, UITableViewDataSource, SKProductsRequestDelegate, SKPaymentTransactionObserver>{
     SKProductsRequest *productsRequest;
     NSArray *validProducts;
-    UIActivityIndicatorView *activityIndicatorView;
     IBOutlet UILabel *productTitleLabel;
     IBOutlet UILabel *productDescriptionLabel;
     IBOutlet UILabel *productPriceLabel;
@@ -23,8 +22,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) NSMutableArray *dataArray;
 @end
-#define YOUR_APP_STORE_ID @"id1405969274"
-#define kRemoveAdsProductIdentifier @"io.enixlabvn.coinmanager.removeads"
 
 @implementation CMCMSettingsViewController
 
@@ -54,6 +51,10 @@
                 [self.dataArray addObject:sTitle];
 
             }
+        } else if (sType == 2 ) {
+            NSString *version = [[NSBundle mainBundle]infoDictionary][@"CFBundleShortVersionString"];
+            NSString *lbtlitle = [NSString stringWithFormat:@"%@ :%@", sTitle,version];
+            [self.dataArray addObject:lbtlitle];
         } else {
             [self.dataArray addObject:sTitle];
         }
@@ -128,14 +129,14 @@
 }
 
 - (void)tapsRemoveAds{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSLog(@"User requests to remove ads");
-    activityIndicatorView = [[UIActivityIndicatorView alloc]
-                             initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    activityIndicatorView.center = self.view.center;
-    [activityIndicatorView hidesWhenStopped];
-    [self.view addSubview:activityIndicatorView];
-    [activityIndicatorView startAnimating];
-
+//    activityIndicatorView = [[UIActivityIndicatorView alloc]
+//                             initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+//    activityIndicatorView.center = self.view.center;
+//    [activityIndicatorView hidesWhenStopped];
+//    [self.view addSubview:activityIndicatorView];
+//    [activityIndicatorView startAnimating];
     [self fetchAvailableProducts];
 }
 
@@ -215,6 +216,8 @@ updatedTransactions:(NSArray *)transactions {
     SKProduct *validProduct = nil;
     NSArray *products = response.products;
     NSLog(@"Product count: %lu", (unsigned long)[products count]);
+    weakify(self);
+
     for (SKProduct *product in products)
     {
         NSLog(@"Product: %@ %@ %f", product.productIdentifier, product.localizedTitle, product.price.floatValue);
@@ -227,18 +230,18 @@ updatedTransactions:(NSArray *)transactions {
         validProduct = [response.products objectAtIndex:0];
         
         if ([validProduct.productIdentifier isEqualToString:kRemoveAdsProductIdentifier]) {
-            weakify(self);
-            
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Remove Ads" message:[NSString stringWithFormat:@"%@", validProduct.price] preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
-                [self_weak_ purchaseMyProduct:[validProducts objectAtIndex:0]];
-            }];
-            UIAlertAction *otherAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
-                // Other action
-            }];
-            [alert addAction:okAction];
-            [alert addAction:otherAction];
-            [self presentViewController:alert animated:YES completion:nil];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self_weak_.view animated:YES];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Confirm purchase Remove Ads" message:[NSString stringWithFormat:@"%@", validProduct.price] preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+                    [self_weak_ purchaseMyProduct:[validProducts objectAtIndex:0]];
+                }];
+                UIAlertAction *otherAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+                }];
+                [alert addAction:okAction];
+                [alert addAction:otherAction];
+                [self_weak_ presentViewController:alert animated:YES completion:nil];
+            });
         }
     } else {
         UIAlertView *tmp = [[UIAlertView alloc]
@@ -249,8 +252,7 @@ updatedTransactions:(NSArray *)transactions {
                             otherButtonTitles:@"Ok", nil];
         [tmp show];
     }
-    
-    [activityIndicatorView stopAnimating];
+
 }
 
 -(void)showAlertViewComplete{

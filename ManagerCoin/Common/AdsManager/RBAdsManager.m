@@ -94,7 +94,7 @@
     self.bannerView.adUnitID = adUnitID;
     self.bannerView.rootViewController = viewController;
     GADRequest *request = [GADRequest request];
-    request.testDevices =  @[@"6585155A-E83C-4D3F-A30C-396DA288E17A",kGADSimulatorID];
+    request.testDevices = @[kGADSimulatorID];
 
     [self.bannerView loadRequest:request];
 }

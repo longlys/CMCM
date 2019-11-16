@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B866AAA2380464500273C5C /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B866AA72380464400273C5C /* settings@2x.png */; };
+		6B866AAB2380464500273C5C /* settings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B866AA82380464400273C5C /* settings@3x.png */; };
+		6B866AAC2380464500273C5C /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B866AA92380464400273C5C /* settings.png */; };
 		6BA4F023236A842600711C27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BA4F022236A842600711C27 /* GoogleService-Info.plist */; };
 		6BA4F02C236A869800711C27 /* RBTabbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA4F026236A869800711C27 /* RBTabbarItem.m */; };
 		6BA4F02D236A869800711C27 /* RBTabbarItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BA4F028236A869800711C27 /* RBTabbarItem.xib */; };
@@ -16,7 +19,7 @@
 		6BA4F038236A927600711C27 /* CMCMSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA4F036236A927600711C27 /* CMCMSettingsViewController.m */; };
 		6BA4F039236A927600711C27 /* CMCMSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BA4F037236A927600711C27 /* CMCMSettingsViewController.xib */; };
 		6BA4F03B236A94B600711C27 /* setting.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BA4F03A236A94B600711C27 /* setting.plist */; };
-		6BA4F03F236ABDDA00711C27 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA4F03E236ABDDA00711C27 /* StoreKit.framework */; };
+		6BE79B8123804A63004E8341 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE79B8023804A63004E8341 /* StoreKit.framework */; };
 		7D0492A720AFE90600C36A9C /* CMCMPointChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0492A620AFE90600C36A9C /* CMCMPointChart.m */; };
 		7D20AE0D20A1C45000AA9204 /* CMCMHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D20AE0B20A1C45000AA9204 /* CMCMHomeTableViewCell.m */; };
 		7D20AE0E20A1C45000AA9204 /* CMCMHomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D20AE0C20A1C45000AA9204 /* CMCMHomeTableViewCell.xib */; };
@@ -136,6 +139,9 @@
 
 /* Begin PBXFileReference section */
 		570CE10CD31D5965620EEE31 /* libPods-ManagerCoin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ManagerCoin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B866AA72380464400273C5C /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
+		6B866AA82380464400273C5C /* settings@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@3x.png"; sourceTree = "<group>"; };
+		6B866AA92380464400273C5C /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		6BA4F022236A842600711C27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6BA4F026236A869800711C27 /* RBTabbarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBTabbarItem.m; sourceTree = "<group>"; };
 		6BA4F027236A869800711C27 /* RBTabbarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBTabbarItem.h; sourceTree = "<group>"; };
@@ -149,7 +155,7 @@
 		6BA4F036236A927600711C27 /* CMCMSettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMCMSettingsViewController.m; sourceTree = "<group>"; };
 		6BA4F037236A927600711C27 /* CMCMSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CMCMSettingsViewController.xib; sourceTree = "<group>"; };
 		6BA4F03A236A94B600711C27 /* setting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = setting.plist; sourceTree = "<group>"; };
-		6BA4F03E236ABDDA00711C27 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		6BE79B8023804A63004E8341 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		7D0492A520AFE90600C36A9C /* CMCMPointChart.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMCMPointChart.h; sourceTree = "<group>"; };
 		7D0492A620AFE90600C36A9C /* CMCMPointChart.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMCMPointChart.m; sourceTree = "<group>"; };
 		7D20AE0A20A1C45000AA9204 /* CMCMHomeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMCMHomeTableViewCell.h; sourceTree = "<group>"; };
@@ -297,7 +303,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6BA4F03F236ABDDA00711C27 /* StoreKit.framework in Frameworks */,
+				6BE79B8123804A63004E8341 /* StoreKit.framework in Frameworks */,
 				7DB9472320D0459E00857B5E /* libsqlite3.tbd in Frameworks */,
 				D913EB7254FF6B006BA085B1 /* libPods-ManagerCoin.a in Frameworks */,
 			);
@@ -332,7 +338,7 @@
 		674DB446182226BDA17C93EB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6BA4F03E236ABDDA00711C27 /* StoreKit.framework */,
+				6BE79B8023804A63004E8341 /* StoreKit.framework */,
 				7DB9470B20D02BF400857B5E /* CoreData.framework */,
 				7D9637D820C2BC96004626B8 /* libsqlite3.tbd */,
 				570CE10CD31D5965620EEE31 /* libPods-ManagerCoin.a */,
@@ -720,6 +726,9 @@
 				7D5E95C820AA820400129D3B /* vi.png */,
 				7D5E95BF20AA820300129D3B /* vi@2x.png */,
 				7D5E95C020AA820300129D3B /* vi@3x.png */,
+				6B866AA92380464400273C5C /* settings.png */,
+				6B866AA72380464400273C5C /* settings@2x.png */,
+				6B866AA82380464400273C5C /* settings@3x.png */,
 			);
 			path = tabbarIcon;
 			sourceTree = "<group>";
@@ -860,6 +869,7 @@
 			files = (
 				7D26B6AD20B457F800DDB98A /* CMCMDetailTableViewCell.xib in Resources */,
 				7DDE805020A3196E00673B0F /* CMCMFavoritesViewController.xib in Resources */,
+				6B866AAB2380464500273C5C /* settings@3x.png in Resources */,
 				7DA230E6209C16BF008897EE /* CMCMHomeViewController.xib in Resources */,
 				7D5EEDE320A83B51006E7DBD /* circle-filled.png in Resources */,
 				7D5E95D020AA820400129D3B /* vi-selected@2x.png in Resources */,
@@ -895,6 +905,7 @@
 				7D5E95E320AA82E900129D3B /* star@3x.png in Resources */,
 				7D20AE0E20A1C45000AA9204 /* CMCMHomeTableViewCell.xib in Resources */,
 				7D97C64520C0706800395D77 /* circle-filled@2x.png in Resources */,
+				6B866AAA2380464500273C5C /* settings@2x.png in Resources */,
 				7D700C1E20AC50CF00FF4405 /* CMCMSegmentedViewController.xib in Resources */,
 				7D9637D320C281EB004626B8 /* btn_Add.png in Resources */,
 				7DA230AD209C127A008897EE /* Assets.xcassets in Resources */,
@@ -922,6 +933,7 @@
 				7D5E95D120AA820400129D3B /* vi@2x.png in Resources */,
 				7D5E95CC20AA820400129D3B /* market-cap-selected@2x.png in Resources */,
 				7D68B2AE20ABD92B00E240A5 /* CMCMDetailItemViewController.xib in Resources */,
+				6B866AAC2380464500273C5C /* settings.png in Resources */,
 				7D5E95E520AA82E900129D3B /* star-selected@2x.png in Resources */,
 				7D5E95D420AA820400129D3B /* trader-selected@3x.png in Resources */,
 			);
@@ -1152,8 +1164,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1.0.3;
 				DEVELOPMENT_TEAM = 57YS2XJLTT;
 				GCC_PREFIX_HEADER = ManagerCoin/PrefixHeader.h;
 				INFOPLIST_FILE = ManagerCoin/Info.plist;
@@ -1173,8 +1185,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1.0.3;
 				DEVELOPMENT_TEAM = 57YS2XJLTT;
 				GCC_PREFIX_HEADER = ManagerCoin/PrefixHeader.h;
 				INFOPLIST_FILE = ManagerCoin/Info.plist;

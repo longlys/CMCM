@@ -60,11 +60,15 @@
     searchNC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:[UIImage imageNamed:@"icon_tab_search"] selectedImage:[UIImage imageNamed:@"icon_tab_search"]];
     [viewControllers addObject:searchNC];
 
-    CMCMSettingsViewController *myController = [CMCMSettingsViewController new];
+    CMCMPortfolioViewController *myController = [CMCMPortfolioViewController new];
     CMCMNavigationViewController *myNC = [[CMCMNavigationViewController alloc] initWithRootViewController:myController];
     myNC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:[UIImage imageNamed:@"vi"] selectedImage:[UIImage imageNamed:@"vi-selected"]];
     [viewControllers addObject:myNC];
 
+    CMCMSettingsViewController *settingVC = [CMCMSettingsViewController new];
+    CMCMNavigationViewController *settingNC = [[CMCMNavigationViewController alloc] initWithRootViewController:settingVC];
+    settingNC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:[UIImage imageNamed:@"settings"] selectedImage:[UIImage imageNamed:@"settings"]];
+    [viewControllers addObject:settingNC];
 
     //////
     //Second View PORTFOLIO
